@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.AppHost", "Aspire\Drimstarter.AppHost\Drimstarter.AppHost.csproj", "{4374A0FA-1D19-4636-9E45-C4A15BDCF4CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.ServiceDefaults", "Aspire\Drimstarter.ServiceDefaults\Drimstarter.ServiceDefaults.csproj", "{406E7633-E1EC-47B6-AC20-2FEACE4FB309}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aspire", "Aspire", "{58D6AE2C-C09D-446C-8509-7D57D66FF598}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", "{455CB86E-37A8-43B1-B207-1D3D2912F036}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{FBB486FE-794B-452F-AC31-28EA1B4EC952}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.ApiGateway", "ApiGateway\Drimstarter.ApiGateway\Drimstarter.ApiGateway.csproj", "{9F707D24-D12E-4521-9EB9-72D7A897AB97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4374A0FA-1D19-4636-9E45-C4A15BDCF4CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4374A0FA-1D19-4636-9E45-C4A15BDCF4CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4374A0FA-1D19-4636-9E45-C4A15BDCF4CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4374A0FA-1D19-4636-9E45-C4A15BDCF4CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{406E7633-E1EC-47B6-AC20-2FEACE4FB309}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{406E7633-E1EC-47B6-AC20-2FEACE4FB309}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{406E7633-E1EC-47B6-AC20-2FEACE4FB309}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{406E7633-E1EC-47B6-AC20-2FEACE4FB309}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F707D24-D12E-4521-9EB9-72D7A897AB97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F707D24-D12E-4521-9EB9-72D7A897AB97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F707D24-D12E-4521-9EB9-72D7A897AB97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F707D24-D12E-4521-9EB9-72D7A897AB97}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4374A0FA-1D19-4636-9E45-C4A15BDCF4CC} = {58D6AE2C-C09D-446C-8509-7D57D66FF598}
+		{406E7633-E1EC-47B6-AC20-2FEACE4FB309} = {58D6AE2C-C09D-446C-8509-7D57D66FF598}
+		{9F707D24-D12E-4521-9EB9-72D7A897AB97} = {455CB86E-37A8-43B1-B207-1D3D2912F036}
+	EndGlobalSection
+EndGlobal
