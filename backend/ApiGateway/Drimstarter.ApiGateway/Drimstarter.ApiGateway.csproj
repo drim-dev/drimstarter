@@ -8,12 +8,23 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Grpc.Net.ClientFactory" Version="2.63.0" />
+        <PackageReference Include="Grpc.Tools" Version="2.65.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="MediatR" Version="12.4.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\Aspire\Drimstarter.ServiceDefaults\Drimstarter.ServiceDefaults.csproj" />
+      <ProjectReference Include="..\..\Common\Drimstarter.Common.Web\Drimstarter.Common.Web.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Protobuf Include="Clients\ProjectService\categories.proto" GrpcServices="Client" />
     </ItemGroup>
 
 </Project>

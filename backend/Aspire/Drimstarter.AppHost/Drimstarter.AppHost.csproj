@@ -11,10 +11,18 @@
 
     <ItemGroup>
         <PackageReference Include="Aspire.Hosting.AppHost" Version="8.1.0"/>
+        <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="8.1.0" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\AccountService\Drimstarter.AccountService\Drimstarter.AccountService.csproj" />
       <ProjectReference Include="..\..\ApiGateway\Drimstarter.ApiGateway\Drimstarter.ApiGateway.csproj" />
+      <ProjectReference Include="..\..\MessagingService\Drimstarter.MessagingService\Drimstarter.MessagingService.csproj" />
+      <ProjectReference Include="..\..\NotificationService\Drimstarter.NotificationService\Drimstarter.NotificationService.csproj" />
+      <ProjectReference Include="..\..\PaymentService\Drimstarter.PaymentService\Drimstarter.PaymentService.csproj" />
+      <ProjectReference Include="..\..\ProjectService\Drimstarter.ProjectService.Setup\Drimstarter.ProjectService.Setup.csproj" />
+      <ProjectReference Include="..\..\ProjectService\Drimstarter.ProjectService\Drimstarter.ProjectService.csproj" />
+      <ProjectReference Include="..\Drimstarter.ServiceDefaults\Drimstarter.ServiceDefaults.csproj" IsAspireProjectResource="false" />
     </ItemGroup>
 
 </Project>

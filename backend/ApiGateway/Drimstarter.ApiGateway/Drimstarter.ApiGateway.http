@@ -1,6 +1,18 @@
 @ApiGateway_HostAddress = http://localhost:5146
 
-GET {{ApiGateway_HostAddress}}/weatherforecast/
+### Create category
+
+POST {{ApiGateway_HostAddress}}/categories/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Art"
+}
+
+### List categories
+
+GET {{ApiGateway_HostAddress}}/categories/
 Accept: application/json
 
 ###

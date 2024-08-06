@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Drimstarter.Common.Tests\Drimstarter.Common.Tests.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
+      <PackageReference Include="Respawn" Version="6.2.1" />
+      <PackageReference Include="Testcontainers.PostgreSql" Version="3.9.0" />
+    </ItemGroup>
+
+</Project>

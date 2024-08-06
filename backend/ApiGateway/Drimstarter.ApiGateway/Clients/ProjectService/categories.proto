@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "Drimstarter.ProjectService.Client";
+
+package categories;
+
+service Categories {
+  rpc CreateCategory (CreateCategoryRequest) returns (CreateCategoryReply);
+  rpc ListCategories (ListCategoriesRequest) returns (ListCategoriesReply);
+}
+
+message CreateCategoryRequest {
+  string name = 1;
+}
+
+message CreateCategoryReply {
+  CategoryDto category = 1;
+}
+
+message ListCategoriesRequest {
+}
+
+message ListCategoriesReply {
+  repeated CategoryDto categories = 1;
+}
+
+message CategoryDto {
+  int32 id = 1;
+  string name = 2;
+}

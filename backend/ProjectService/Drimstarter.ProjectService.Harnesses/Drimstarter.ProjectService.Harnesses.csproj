@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Aspire\Drimstarter.ServiceDefaults\Drimstarter.ServiceDefaults.csproj" />
+      <ProjectReference Include="..\..\Common\Drimstarter.Common.Tests.Grpc\Drimstarter.Common.Tests.Grpc.csproj" />
+      <ProjectReference Include="..\Drimstarter.ProjectService\Drimstarter.ProjectService.csproj" />
+    </ItemGroup>
+
+</Project>
