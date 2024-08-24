@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+      <PackageReference Include="Grpc.AspNetCore" Version="2.63.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Drimstarter.Common.Errors\Drimstarter.Common.Errors.csproj" />
     </ItemGroup>
-    
+
 </Project>

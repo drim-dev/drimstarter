@@ -18,7 +18,9 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Aspire\Drimstarter.ServiceDefaults\Drimstarter.ServiceDefaults.csproj" />
+      <ProjectReference Include="..\..\Common\Drimstarter.Common.Grpc\Drimstarter.Common.Grpc.csproj" />
       <ProjectReference Include="..\..\Common\Drimstarter.Common.Utils\Drimstarter.Common.Utils.csproj" />
+      <ProjectReference Include="..\..\Common\Drimstarter.Common.Validation\Drimstarter.Common.Validation.csproj" />
     </ItemGroup>
 
     <ItemGroup>

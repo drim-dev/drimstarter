@@ -1,12 +1,12 @@
 using AccountService.Services;
+using Drimstarter.Common.Grpc.Server;
 using Drimstarter.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
-// Add services to the container.
-builder.Services.AddGrpc();
+builder.Services.AddGrpcServer();
 
 var app = builder.Build();
 

@@ -20,6 +20,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Aspire\Drimstarter.ServiceDefaults\Drimstarter.ServiceDefaults.csproj" />
+      <ProjectReference Include="..\..\Common\Drimstarter.Common.Grpc\Drimstarter.Common.Grpc.csproj" />
       <ProjectReference Include="..\..\Common\Drimstarter.Common.Web\Drimstarter.Common.Web.csproj" />
     </ItemGroup>
 

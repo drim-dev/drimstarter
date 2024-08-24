@@ -1,4 +1,5 @@
 using System.Net;
+using Drimstarter.Common.Grpc.Server;
 using Drimstarter.Common.Tests.Grpc.Harnesses.Service.Utils;
 using Drimstarter.Common.Tests.Harnesses;
 using MediatR;
@@ -28,7 +29,7 @@ public abstract class BaseServiceHarness<TProgram> : IHarness<TProgram>
 
         var webApplicationBuilder = WebApplication.CreateBuilder();
 
-        webApplicationBuilder.Services.AddGrpc();
+        webApplicationBuilder.Services.AddGrpcServer();
         webApplicationBuilder.Services.AddSingleton<FakeMediatorSender>();
         webApplicationBuilder.Services.AddSingleton<ISender>(provider => provider.GetRequiredService<FakeMediatorSender>());
 

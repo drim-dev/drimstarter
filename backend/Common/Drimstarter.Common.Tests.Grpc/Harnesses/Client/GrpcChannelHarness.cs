@@ -1,4 +1,6 @@
+using Drimstarter.Common.Grpc.Client;
 using Drimstarter.Common.Tests.Harnesses;
+using Grpc.Core.Interceptors;
 using Grpc.Net.Client;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -27,6 +29,8 @@ public class GrpcChannelHarness<T> : IHarness<T>
             LoggerFactory = new LoggerFactory(),
             HttpClient = _httpClient,
         });
+
+        _grpcChannel.Intercept(new ClientExceptionInterceptor());
 
         return Task.CompletedTask;
     }
