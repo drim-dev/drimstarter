@@ -131,7 +131,7 @@ public class CreateCategoryValidatorTests : IAsyncLifetime
         var result = await validator.TestValidateAsync(request);
 
         result.ShouldHaveValidationErrorFor(x => x.Name)
-            .WithErrorCode("categories:validation:name_must_not_exist");
+            .WithErrorCode("categories:validation:name_must_not_already_exist");
     }
 
     private static CreateCategoryRequest CreateRequest(string? name = null) =>

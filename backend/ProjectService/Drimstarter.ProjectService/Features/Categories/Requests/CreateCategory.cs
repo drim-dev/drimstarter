@@ -26,7 +26,7 @@ public static class CreateCategory
                     return !await db.Categories.AnyAsync(x => x.Name == capitalizedName, cancellationToken);
                 })
                 .WithMessage("Name must not exist")
-                .WithErrorCode(NameMustNotExist);
+                .WithErrorCode(NameMustNotAlreadyExist);
         }
     }
 
