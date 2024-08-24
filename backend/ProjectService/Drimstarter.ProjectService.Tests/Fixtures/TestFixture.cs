@@ -4,8 +4,9 @@ using Drimstarter.Common.Tests.Harnesses;
 using Drimstarter.ProjectService.Database;
 using Drimstarter.ServiceDefaults;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Drimstarter.ProjectService.Tests.Integration.Fixtures;
+namespace Drimstarter.ProjectService.Tests.Fixtures;
 
 public class TestFixture : IAsyncLifetime
 {
@@ -24,6 +25,8 @@ public class TestFixture : IAsyncLifetime
 
     public DatabaseHarness<Program, ProjectDbContext> Database { get; }
     public Client.Categories.CategoriesClient? CategoryClient { get; private set; }
+
+    public AsyncServiceScope CreateScope() => _factory.Services.CreateAsyncScope();
 
     public async Task Reset(CancellationToken cancellationToken)
     {

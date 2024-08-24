@@ -4,6 +4,7 @@ using Drimstarter.ProjectService.Database;
 using Drimstarter.ProjectService.Domain;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using static Drimstarter.ProjectService.Features.Categories.Errors.CategoriesValidationErrors;
 
 namespace Drimstarter.ProjectService.Features.Categories.Requests;
@@ -12,14 +13,20 @@ public static class CreateCategory
 {
     public class RequestValidator : AbstractValidator<CreateCategoryRequest>
     {
-        public RequestValidator()
+        public RequestValidator(ProjectDbContext db)
         {
             RuleFor(x => x.Name)
                 .NotEmpty(NameMustNotBeEmpty)
                 .MinimumLength(Category.NameMinLength, NameMustBeGreaterOrEqualMinLength)
-                .MaximumLength(Category.NameMaxLength, NameMustBeLessOrEqualMaxLength);
-
-            // TODO: check that category name is unique
+                .MaximumLength(Category.NameMaxLength, NameMustBeLessOrEqualMaxLength)
+                // TODO: extract to extensions?
+                .MustAsync(async (name, cancellationToken) =>
+                {
+                    var capitalizedName = name.CapitalizeWords();
+                    return !await db.Categories.AnyAsync(x => x.Name == capitalizedName, cancellationToken);
+                })
+                .WithMessage("Name must not exist")
+                .WithErrorCode(NameMustNotExist);
         }
     }
 

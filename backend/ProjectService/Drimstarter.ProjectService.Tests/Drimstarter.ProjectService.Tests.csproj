@@ -34,11 +34,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Integration\Features\Categories\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Protobuf Include="Integration\Features\categories.proto" GrpcServices="Client" />
+      <Protobuf Include="Features\categories.proto">
+        <Generator>MSBuild:Compile</Generator>
+      </Protobuf>
     </ItemGroup>
 
 </Project>

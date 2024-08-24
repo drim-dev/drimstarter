@@ -1,14 +1,16 @@
-using AutoBogus;
-using Drimstarter.ProjectService.Domain;
-using Drimstarter.ProjectService.Tests.Integration.Fixtures;
+using Drimstarter.ProjectService.Tests.Fixtures;
 using Drimstarter.ProjectService.Tests.Utils;
 using FluentAssertions;
 
-namespace Drimstarter.ProjectService.Tests.Integration.Features.Categories.Requests;
+namespace Drimstarter.ProjectService.Tests.Features.Categories.Requests;
 
 [Collection(CategoryTestsCollection.Name)]
-public class ListCategoriesTests(TestFixture _fixture) : IAsyncLifetime
+public class ListCategoriesTests : IAsyncLifetime
 {
+    private readonly TestFixture _fixture;
+
+    public ListCategoriesTests(TestFixture fixture) => _fixture = fixture;
+
     public Task InitializeAsync() => _fixture.Reset(CreateCancellationToken());
 
     public Task DisposeAsync() => Task.CompletedTask;

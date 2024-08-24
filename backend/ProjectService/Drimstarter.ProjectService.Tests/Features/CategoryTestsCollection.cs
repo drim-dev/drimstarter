@@ -1,6 +1,6 @@
-using Drimstarter.ProjectService.Tests.Integration.Fixtures;
+using Drimstarter.ProjectService.Tests.Fixtures;
 
-namespace Drimstarter.ProjectService.Tests.Integration.Features;
+namespace Drimstarter.ProjectService.Tests.Features;
 
 [CollectionDefinition(Name)]
 public class CategoryTestsCollection : ICollectionFixture<TestFixture>
