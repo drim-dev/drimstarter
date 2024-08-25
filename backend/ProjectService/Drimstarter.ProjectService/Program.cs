@@ -1,3 +1,4 @@
+using Drimstarter.Common.Database;
 using Drimstarter.Common.Grpc.Server;
 using Drimstarter.Common.Validation.Behaviors;
 using Drimstarter.ProjectService.Database;
@@ -21,6 +22,9 @@ builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 builder.AddNpgsqlDbContext<ProjectDbContext>(ResourceNames.ProjectServiceDb);
 
 builder.Services.AddGrpcServer();
+
+// TODO: use different generator id for different replicas
+builder.Services.AddIdFactory(1);
 
 var app = builder.Build();
 

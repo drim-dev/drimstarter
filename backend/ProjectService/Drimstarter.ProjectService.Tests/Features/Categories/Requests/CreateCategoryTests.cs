@@ -1,4 +1,5 @@
 using AutoBogus;
+using Drimstarter.Common.Database;
 using Drimstarter.Common.Utils;
 using Drimstarter.ProjectService.Domain;
 using Drimstarter.ProjectService.Features.Categories.Requests;
@@ -33,10 +34,10 @@ public class CreateCategoryTests : IAsyncLifetime
         var categoryDto = reply.Category;
 
         categoryDto.Should().NotBeNull();
-        categoryDto.Id.Should().BeGreaterOrEqualTo(0);
+        categoryDto.Id.Should().NotBeEmpty();
         categoryDto.Name.Should().Be(request.Name);
 
-        var category = await _fixture.Database.SingleOrDefault<Category>(c => c.Id == categoryDto.Id,
+        var category = await _fixture.Database.SingleOrDefault<Category>(c => c.Id == IdEncoding.Decode(categoryDto.Id),
             CreateCancellationToken());
 
         category.Should().NotBeNull();
@@ -131,7 +132,7 @@ public class CreateCategoryValidatorTests : IAsyncLifetime
         var result = await validator.TestValidateAsync(request);
 
         result.ShouldHaveValidationErrorFor(x => x.Name)
-            .WithErrorCode("categories:validation:name_must_not_already_exist");
+            .WithErrorCode("categories:validation:name_must_not_yet_exist");
     }
 
     private static CreateCategoryRequest CreateRequest(string? name = null) =>

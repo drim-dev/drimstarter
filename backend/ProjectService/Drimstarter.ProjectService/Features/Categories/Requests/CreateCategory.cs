@@ -1,3 +1,4 @@
+using Drimstarter.Common.Database;
 using Drimstarter.Common.Utils;
 using Drimstarter.Common.Validation.Extensions;
 using Drimstarter.ProjectService.Database;
@@ -26,23 +27,28 @@ public static class CreateCategory
                     return !await db.Categories.AnyAsync(x => x.Name == capitalizedName, cancellationToken);
                 })
                 .WithMessage("Name must not exist")
-                .WithErrorCode(NameMustNotAlreadyExist);
+                .WithErrorCode(NameMustNotYetExist);
         }
     }
 
     public class RequestHandler : IRequestHandler<CreateCategoryRequest, CreateCategoryReply>
     {
         private readonly ProjectDbContext _db;
+        private readonly IdFactory _idFactory;
 
-        public RequestHandler(ProjectDbContext db)
+        public RequestHandler(
+            ProjectDbContext db,
+            IdFactory idFactory)
         {
             _db = db;
+            _idFactory = idFactory;
         }
 
         public async Task<CreateCategoryReply> Handle(CreateCategoryRequest request, CancellationToken cancellationToken)
         {
             var category = new Category
             {
+                Id = _idFactory.Create(),
                 // TODO: write tests
                 Name = request.Name.CapitalizeWords(),
             };
@@ -52,7 +58,7 @@ public static class CreateCategory
 
             var categoryDto = new CategoryDto
             {
-                Id = category.Id,
+                Id = IdEncoding.Encode(category.Id),
                 Name = category.Name,
             };
 

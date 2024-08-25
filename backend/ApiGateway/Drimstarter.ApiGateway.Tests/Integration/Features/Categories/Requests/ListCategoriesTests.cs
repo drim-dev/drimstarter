@@ -8,8 +8,15 @@ using FluentAssertions;
 namespace Drimstarter.ApiGateway.Tests.Integration.Features.Categories.Requests;
 
 [Collection(CategoryTestsCollection.Name)]
-public class ListCategoriesTests(TestFixture _fixture) : IAsyncLifetime
+public class ListCategoriesTests : IAsyncLifetime
 {
+    private readonly TestFixture _fixture;
+
+    public ListCategoriesTests(TestFixture fixture)
+    {
+        _fixture = fixture;
+    }
+
     public Task InitializeAsync() => _fixture.Reset();
 
     public Task DisposeAsync() => Task.CompletedTask;
@@ -38,7 +45,7 @@ public class ListCategoriesTests(TestFixture _fixture) : IAsyncLifetime
 
         for (var i = 0; i < categoryDtos.Count; i++)
         {
-            categories[i].Id.Should().Be((short)categoryDtos[i].Id);
+            categories[i].Id.Should().Be(categoryDtos[i].Id);
             categories[i].Name.Should().Be(categoryDtos[i].Name);
         }
     }

@@ -26,14 +26,20 @@ public static class CreateCategory
 
     public record Request(string Name) : IRequest<CategoryModel>;
 
-    public class RequestHandler(ProjectService.Client.Categories.CategoriesClient _categoryClient)
-        : IRequestHandler<Request, CategoryModel>
+    public class RequestHandler : IRequestHandler<Request, CategoryModel>
     {
+        private readonly ProjectService.Client.Categories.CategoriesClient _categoryClient;
+
+        public RequestHandler(ProjectService.Client.Categories.CategoriesClient categoryClient)
+        {
+            _categoryClient = categoryClient;
+        }
+
         public async Task<CategoryModel> Handle(Request request, CancellationToken cancellationToken)
         {
             var grpcRequest = new CreateCategoryRequest { Name = request.Name };
             var reply = await _categoryClient.CreateCategoryAsync(grpcRequest, cancellationToken: cancellationToken);
-            return new CategoryModel((short)reply.Category.Id, reply.Category.Name);
+            return new CategoryModel(reply.Category.Id, reply.Category.Name);
         }
     }
 }

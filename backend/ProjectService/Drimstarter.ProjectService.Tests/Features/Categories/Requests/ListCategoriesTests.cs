@@ -1,6 +1,8 @@
+using Drimstarter.Common.Database;
 using Drimstarter.ProjectService.Tests.Fixtures;
 using Drimstarter.ProjectService.Tests.Utils;
 using FluentAssertions;
+using IdGen;
 
 namespace Drimstarter.ProjectService.Tests.Features.Categories.Requests;
 
@@ -31,6 +33,13 @@ public class ListCategoriesTests : IAsyncLifetime
 
         reply.Categories.Should().NotBeEmpty();
 
-        reply.Categories.Should().BeEquivalentTo(categories, options => options.ExcludingMissingMembers());
+        // TODO: move to extension
+        categories.Should().HaveCount(reply.Categories.Count);
+        foreach (var category in categories)
+        {
+            reply.Categories.Should().Contain(c =>
+                c.Id == IdEncoding.Encode(category.Id) &&
+                c.Name == category.Name);
+        }
     }
 }

@@ -7,7 +7,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "Art"
+  "name": "Art2"
 }
 
 ### List categories

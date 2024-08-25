@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Drimstarter.ProjectService.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20240802083236_AddCategory")]
+    [Migration("20240825065613_AddCategory")]
     partial class AddCategory
     {
         /// <inheritdoc />
@@ -26,11 +26,11 @@ namespace Drimstarter.ProjectService.Migrations
 
             modelBuilder.Entity("Drimstarter.ProjectService.Domain.Category", b =>
                 {
-                    b.Property<short>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("smallint");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<short>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()

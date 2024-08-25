@@ -7,8 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="IdGen.DependencyInjection" Version="3.0.7" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.7" />
       <PackageReference Include="OpenTelemetry" Version="1.9.0" />
+      <PackageReference Include="SimpleBase" Version="4.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Drimstarter.Common.Utils\Drimstarter.Common.Utils.csproj" />
     </ItemGroup>
 
 </Project>

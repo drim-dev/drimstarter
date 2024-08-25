@@ -27,14 +27,20 @@ public static class ListCategories
 
     public record Request : IRequest<CategoryModel[]>;
 
-    public class RequestHandler(ProjectService.Client.Categories.CategoriesClient _categoryClient)
-        : IRequestHandler<Request, CategoryModel[]>
+    public class RequestHandler : IRequestHandler<Request, CategoryModel[]>
     {
+        private readonly ProjectService.Client.Categories.CategoriesClient _categoryClient;
+
+        public RequestHandler(ProjectService.Client.Categories.CategoriesClient categoryClient)
+        {
+            _categoryClient = categoryClient;
+        }
+
         public async Task<CategoryModel[]> Handle(Request request, CancellationToken cancellationToken)
         {
             var grpcRequest = new ListCategoriesRequest();
             var reply = await _categoryClient.ListCategoriesAsync(grpcRequest, cancellationToken: cancellationToken);
-            return reply.Categories.Select(x => new CategoryModel((short)x.Id, x.Name)).ToArray();
+            return reply.Categories.Select(x => new CategoryModel(x.Id, x.Name)).ToArray();
         }
     }
 }
