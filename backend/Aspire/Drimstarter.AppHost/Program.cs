@@ -1,6 +1,6 @@
 using Drimstarter.ServiceDefaults;
 
-var postgresVersion = "16.3";
+const string postgresVersion = "16.3";
 
 var builder = DistributedApplication.CreateBuilder(args);
 
@@ -18,9 +18,12 @@ var projectService = builder.AddProject<Projects.Drimstarter_ProjectService>(Res
 var accountServiceDb = builder.AddPostgres("account-service-postgres")
     .WithImageTag(postgresVersion)
     .WithPgAdmin()
-    .AddDatabase("account-service-db");
+    .AddDatabase(ResourceNames.AccountServiceDb);
 
-var accountService = builder.AddProject<Projects.Drimstarter_AccountService>("account-service")
+var accountServiceSetup = builder.AddProject<Projects.Drimstarter_AccountService_Setup>(ResourceNames.AccountServiceSetup)
+    .WithReference(accountServiceDb);
+
+var accountService = builder.AddProject<Projects.Drimstarter_AccountService>(ResourceNames.AccountService)
     .WithReference(accountServiceDb);
 
 var paymentService = builder.AddProject<Projects.Drimstarter_PaymentService>("payment-service");

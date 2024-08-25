@@ -1,12 +1,12 @@
 using System.Diagnostics;
+using Drimstarter.AccountService.Database;
 using Drimstarter.Common.Database;
-using Drimstarter.ProjectService.Database;
 
-namespace Drimstarter.ProjectService.Setup;
+namespace Drimstarter.AccountService.Setup;
 
 public class SetupWorker : BackgroundService
 {
-    public const string ActivitySourceName = "project-service-setup";
+    public const string ActivitySourceName = "account-service-setup";
 
     private static readonly ActivitySource ActivitySource = new(ActivitySourceName);
 
@@ -32,6 +32,6 @@ public class SetupWorker : BackgroundService
     {
         using var activity = ActivitySource.StartActivity(ActivityKind.Client);
 
-        await DatabaseMigrator.Migrate<ProjectDbContext>(_serviceProvider, stoppingToken);
+        await DatabaseMigrator.Migrate<AccountDbContext>(_serviceProvider, stoppingToken);
     }
 }

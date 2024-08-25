@@ -7,16 +7,24 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Protobuf Include="Protos\greet.proto" GrpcServices="Server"/>
+        <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.1.0" />
+        <PackageReference Include="Grpc.AspNetCore" Version="2.63.0" />
+        <PackageReference Include="MediatR" Version="12.4.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Grpc.AspNetCore" Version="2.63.0" />
+        <Protobuf Include="Features\Accounts\accounts.proto" GrpcServices="Server" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Aspire\Drimstarter.ServiceDefaults\Drimstarter.ServiceDefaults.csproj" />
+      <ProjectReference Include="..\..\..\Common\Drimstarter.Common.Database\Drimstarter.Common.Database.csproj" />
       <ProjectReference Include="..\..\..\Common\Drimstarter.Common.Grpc\Drimstarter.Common.Grpc.csproj" />
+      <ProjectReference Include="..\..\..\Common\Drimstarter.Common.Validation\Drimstarter.Common.Validation.csproj" />
     </ItemGroup>
 
 </Project>

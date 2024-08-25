@@ -8,19 +8,19 @@ public static class ValidationRulesExtensions
     {
         return ruleBuilder
             .NotEmpty()
-            .WithMessage("{PropertyName} must not be empty")
+            .WithMessage("{PropertyName} is empty")
             .WithErrorCode(errorCode);
     }
 
     public static IRuleBuilderOptions<T, string> MinimumLength<T>(this IRuleBuilder<T, string> ruleBuilder,
         int minimumLength, string errorCode) => ruleBuilder
         .MinimumLength(minimumLength)
-            .WithMessage($"{{PropertyName}} length must be greater or equal {minimumLength}")
+            .WithMessage($"{{PropertyName}} length is less than {minimumLength}")
             .WithErrorCode(errorCode);
 
     public static IRuleBuilderOptions<T, string> MaximumLength<T>(this IRuleBuilder<T, string> ruleBuilder,
         int maximumLength, string errorCode) => ruleBuilder
         .MaximumLength(maximumLength)
-            .WithMessage($"{{PropertyName}} length length must be less or equal {maximumLength}")
+            .WithMessage($"{{PropertyName}} length is greater than {maximumLength}")
             .WithErrorCode(errorCode);
 }

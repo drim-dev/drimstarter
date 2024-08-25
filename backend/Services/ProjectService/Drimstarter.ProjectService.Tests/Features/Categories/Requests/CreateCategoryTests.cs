@@ -85,7 +85,7 @@ public class CreateCategoryValidatorTests : IAsyncLifetime
         var result = await validator.TestValidateAsync(request);
 
         result.ShouldHaveValidationErrorFor(x => x.Name)
-            .WithErrorCode("categories:validation:name_must_not_be_empty");
+            .WithErrorCode("categories:validation:name_empty");
     }
 
     [Fact]
@@ -99,7 +99,7 @@ public class CreateCategoryValidatorTests : IAsyncLifetime
         var result = await validator.TestValidateAsync(request);
 
         result.ShouldHaveValidationErrorFor(x => x.Name)
-            .WithErrorCode("categories:validation:name_must_be_greater_or_equal_min_length");
+            .WithErrorCode("categories:validation:name_less_min_length");
     }
 
     [Fact]
@@ -113,7 +113,7 @@ public class CreateCategoryValidatorTests : IAsyncLifetime
         var result = await validator.TestValidateAsync(request);
 
         result.ShouldHaveValidationErrorFor(x => x.Name)
-            .WithErrorCode("categories:validation:name_must_be_less_or_equal_max_length");
+            .WithErrorCode("categories:validation:name_greater_max_length");
     }
 
     [Theory]
@@ -132,7 +132,7 @@ public class CreateCategoryValidatorTests : IAsyncLifetime
         var result = await validator.TestValidateAsync(request);
 
         result.ShouldHaveValidationErrorFor(x => x.Name)
-            .WithErrorCode("categories:validation:name_must_not_yet_exist");
+            .WithErrorCode("categories:validation:name_already_exists");
     }
 
     private static CreateCategoryRequest CreateRequest(string? name = null) =>

@@ -22,6 +22,12 @@ builder.Services.AddGrpcClient<Drimstarter.ProjectService.Client.Categories.Cate
     options.InterceptorRegistrations.Add(new InterceptorRegistration(InterceptorScope.Channel, p => p.GetRequiredService<ClientExceptionInterceptor>()));
 });
 
+builder.Services.AddGrpcClient<Drimstarter.AccountService.Client.Accounts.AccountsClient>(options =>
+{
+    options.Address = new Uri($"http://{ResourceNames.AccountService}");
+    options.InterceptorRegistrations.Add(new InterceptorRegistration(InterceptorScope.Channel, p => p.GetRequiredService<ClientExceptionInterceptor>()));
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

@@ -17,8 +17,7 @@ public static class CreateCategory
             app.MapPost(Path, async Task<Created<CategoryModel>>
                 (ISender sender, Request body, CancellationToken cancellationToken) =>
             {
-                var request = new Request(body.Name);
-                var category = await sender.Send(request, cancellationToken);
+                var category = await sender.Send(body, cancellationToken);
                 return TypedResults.Created($"{Path}/{category.Id}", category);
             });
         }

@@ -7,7 +7,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "Art2"
+  "name": "Art"
 }
 
 ### List categories
@@ -15,4 +15,14 @@ Content-Type: application/json
 GET {{ApiGateway_HostAddress}}/categories/
 Accept: application/json
 
-###
+### Create account
+
+POST {{ApiGateway_HostAddress}}/accounts/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@doe.com",
+  "password": "Pass1123"
+}
