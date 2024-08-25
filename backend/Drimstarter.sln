@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.AppHost", "Aspire\Drimstarter.AppHost\Drimstarter.AppHost.csproj", "{4374A0FA-1D19-4636-9E45-C4A15BDCF4CC}"
 EndProject
@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{FBB486FE-794B-452F-AC31-28EA1B4EC952}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.ApiGateway", "ApiGateway\Drimstarter.ApiGateway\Drimstarter.ApiGateway.csproj", "{9F707D24-D12E-4521-9EB9-72D7A897AB97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.ApiGateway", "Api\ApiGateway\Drimstarter.ApiGateway\Drimstarter.ApiGateway.csproj", "{9F707D24-D12E-4521-9EB9-72D7A897AB97}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectService", "ProjectService", "{D3E3643D-E560-40CF-9167-BE565F02C745}"
 EndProject
@@ -22,27 +22,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NotificationService", "Noti
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MessagingService", "MessagingService", "{179E8EF9-ED8B-41B2-8A26-A5E799DBE8BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.ProjectService", "ProjectService\Drimstarter.ProjectService\Drimstarter.ProjectService.csproj", "{61CC3435-3E07-49CF-9F04-1C3A8AB71CB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.ProjectService", "Services\ProjectService\Drimstarter.ProjectService\Drimstarter.ProjectService.csproj", "{61CC3435-3E07-49CF-9F04-1C3A8AB71CB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.AccountService", "AccountService\Drimstarter.AccountService\Drimstarter.AccountService.csproj", "{2AAAB317-9367-4FBE-AE65-A8137D5BC8BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.AccountService", "Services\AccountService\Drimstarter.AccountService\Drimstarter.AccountService.csproj", "{2AAAB317-9367-4FBE-AE65-A8137D5BC8BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.PaymentService", "PaymentService\Drimstarter.PaymentService\Drimstarter.PaymentService.csproj", "{101D9F42-12A1-421B-8380-238C8EF2EF5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.PaymentService", "Services\PaymentService\Drimstarter.PaymentService\Drimstarter.PaymentService.csproj", "{101D9F42-12A1-421B-8380-238C8EF2EF5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.MessagingService", "MessagingService\Drimstarter.MessagingService\Drimstarter.MessagingService.csproj", "{759BF054-836F-4789-8B10-70F349A7DE49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.MessagingService", "Services\MessagingService\Drimstarter.MessagingService\Drimstarter.MessagingService.csproj", "{759BF054-836F-4789-8B10-70F349A7DE49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.NotificationService", "NotificationService\Drimstarter.NotificationService\Drimstarter.NotificationService.csproj", "{9636E4A8-7AA6-47AC-B820-3974332ACCC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.NotificationService", "Services\NotificationService\Drimstarter.NotificationService\Drimstarter.NotificationService.csproj", "{9636E4A8-7AA6-47AC-B820-3974332ACCC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.AccountService.Setup", "AccountService\Drimstarter.AccountService.Setup\Drimstarter.AccountService.Setup.csproj", "{C0F1A5F3-BF3B-4611-B7B1-A2C6821F1901}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.AccountService.Setup", "Services\AccountService\Drimstarter.AccountService.Setup\Drimstarter.AccountService.Setup.csproj", "{C0F1A5F3-BF3B-4611-B7B1-A2C6821F1901}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.NotificationService.Setup", "NotificationService\Drimstarter.NotificationService.Setup\Drimstarter.NotificationService.Setup.csproj", "{D1C1A140-B4DC-4C9C-B0A0-7AAAB67990FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.NotificationService.Setup", "Services\NotificationService\Drimstarter.NotificationService.Setup\Drimstarter.NotificationService.Setup.csproj", "{D1C1A140-B4DC-4C9C-B0A0-7AAAB67990FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.PaymentService.Setup", "PaymentService\Drimstarter.PaymentService.Setup\Drimstarter.PaymentService.Setup.csproj", "{3E097B8E-6201-404D-A479-7C0221D44F12}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.PaymentService.Setup", "Services\PaymentService\Drimstarter.PaymentService.Setup\Drimstarter.PaymentService.Setup.csproj", "{3E097B8E-6201-404D-A479-7C0221D44F12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.ProjectService.Setup", "ProjectService\Drimstarter.ProjectService.Setup\Drimstarter.ProjectService.Setup.csproj", "{EC913003-9004-425B-9280-D65227E83535}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.ProjectService.Setup", "Services\ProjectService\Drimstarter.ProjectService.Setup\Drimstarter.ProjectService.Setup.csproj", "{EC913003-9004-425B-9280-D65227E83535}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.Common.Database", "Common\Drimstarter.Common.Database\Drimstarter.Common.Database.csproj", "{EB9AFDAF-B07E-428B-8119-CA1A1A104BCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.ProjectService.Tests", "ProjectService\Drimstarter.ProjectService.Tests\Drimstarter.ProjectService.Tests.csproj", "{8B0444DB-6C62-4F4C-9875-B2A55D99FF96}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.ProjectService.Tests", "Services\ProjectService\Drimstarter.ProjectService.Tests\Drimstarter.ProjectService.Tests.csproj", "{8B0444DB-6C62-4F4C-9875-B2A55D99FF96}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.Common.Tests", "Common\Drimstarter.Common.Tests\Drimstarter.Common.Tests.csproj", "{F1309F2C-FF32-4B4D-A42F-E9E49ACCDF1E}"
 EndProject
@@ -54,15 +54,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.Common.Web", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.Common.Utils", "Common\Drimstarter.Common.Utils\Drimstarter.Common.Utils.csproj", "{2C29FDF3-92E5-4F91-BEB5-D6A617E20450}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.ProjectService.Harnesses", "ProjectService\Drimstarter.ProjectService.Harnesses\Drimstarter.ProjectService.Harnesses.csproj", "{362DD76C-3F8F-4A78-853F-5AD2703DEABE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.ProjectService.Harnesses", "Services\ProjectService\Drimstarter.ProjectService.Harnesses\Drimstarter.ProjectService.Harnesses.csproj", "{362DD76C-3F8F-4A78-853F-5AD2703DEABE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.ApiGateway.Tests", "ApiGateway\Drimstarter.ApiGateway.Tests\Drimstarter.ApiGateway.Tests.csproj", "{B8A90299-0124-41EA-B5A6-FAAC81481881}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.ApiGateway.Tests", "Api\ApiGateway\Drimstarter.ApiGateway.Tests\Drimstarter.ApiGateway.Tests.csproj", "{B8A90299-0124-41EA-B5A6-FAAC81481881}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.Common.Errors", "Common\Drimstarter.Common.Errors\Drimstarter.Common.Errors.csproj", "{63550D36-9C60-4738-8C0B-E0ACCFD4059F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.Common.Validation", "Common\Drimstarter.Common.Validation\Drimstarter.Common.Validation.csproj", "{3859A42F-B741-4D8D-A784-180229DC4F0B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.Common.Grpc", "Common\Drimstarter.Common.Grpc\Drimstarter.Common.Grpc.csproj", "{48D00135-4187-4B61-AA21-29C7D90F89C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{47C7A963-FA70-432E-8C6A-2B2B886416BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{BC0769AB-182A-4F59-8C88-BFC0602E0ADC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -192,5 +196,11 @@ Global
 		{63550D36-9C60-4738-8C0B-E0ACCFD4059F} = {FBB486FE-794B-452F-AC31-28EA1B4EC952}
 		{3859A42F-B741-4D8D-A784-180229DC4F0B} = {FBB486FE-794B-452F-AC31-28EA1B4EC952}
 		{48D00135-4187-4B61-AA21-29C7D90F89C7} = {FBB486FE-794B-452F-AC31-28EA1B4EC952}
+		{455CB86E-37A8-43B1-B207-1D3D2912F036} = {BC0769AB-182A-4F59-8C88-BFC0602E0ADC}
+		{9425CEB3-620D-4742-948D-59E8C9417D0A} = {47C7A963-FA70-432E-8C6A-2B2B886416BB}
+		{D3E3643D-E560-40CF-9167-BE565F02C745} = {47C7A963-FA70-432E-8C6A-2B2B886416BB}
+		{07476146-DE5D-4368-9FE8-B07E9D5E8C2A} = {47C7A963-FA70-432E-8C6A-2B2B886416BB}
+		{DBD9F085-076A-4D8F-BE64-5A82A64F9930} = {47C7A963-FA70-432E-8C6A-2B2B886416BB}
+		{179E8EF9-ED8B-41B2-8A26-A5E799DBE8BC} = {47C7A963-FA70-432E-8C6A-2B2B886416BB}
 	EndGlobalSection
 EndGlobal

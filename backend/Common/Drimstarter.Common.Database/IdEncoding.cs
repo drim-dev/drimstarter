@@ -15,6 +15,7 @@ public static class IdEncoding
         return Base32.Crockford.Encode(bytesWithChecksum).ToLower();
     }
 
+    // TODO: rewrite to TryDecode and return BadRequest if checksum mismatch
     public static long Decode(string id)
     {
         var bytesWithChecksum = Base32.Crockford.Decode(id.ToUpper());

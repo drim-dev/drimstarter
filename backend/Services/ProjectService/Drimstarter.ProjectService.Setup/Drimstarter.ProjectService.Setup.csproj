@@ -12,8 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Aspire\Drimstarter.ServiceDefaults\Drimstarter.ServiceDefaults.csproj" />
-      <ProjectReference Include="..\..\Common\Drimstarter.Common.Database\Drimstarter.Common.Database.csproj" />
       <ProjectReference Include="..\Drimstarter.ProjectService\Drimstarter.ProjectService.csproj" />
     </ItemGroup>
 </Project>

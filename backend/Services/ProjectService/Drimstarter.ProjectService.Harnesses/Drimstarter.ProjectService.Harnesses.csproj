@@ -7,8 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Aspire\Drimstarter.ServiceDefaults\Drimstarter.ServiceDefaults.csproj" />
-      <ProjectReference Include="..\..\Common\Drimstarter.Common.Tests.Grpc\Drimstarter.Common.Tests.Grpc.csproj" />
+      <ProjectReference Include="..\..\..\Aspire\Drimstarter.ServiceDefaults\Drimstarter.ServiceDefaults.csproj" />
+      <ProjectReference Include="..\..\..\Common\Drimstarter.Common.Tests.Grpc\Drimstarter.Common.Tests.Grpc.csproj" />
       <ProjectReference Include="..\Drimstarter.ProjectService\Drimstarter.ProjectService.csproj" />
     </ItemGroup>
 

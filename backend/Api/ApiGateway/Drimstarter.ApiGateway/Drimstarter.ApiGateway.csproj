@@ -19,13 +19,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Aspire\Drimstarter.ServiceDefaults\Drimstarter.ServiceDefaults.csproj" />
-      <ProjectReference Include="..\..\Common\Drimstarter.Common.Grpc\Drimstarter.Common.Grpc.csproj" />
-      <ProjectReference Include="..\..\Common\Drimstarter.Common.Web\Drimstarter.Common.Web.csproj" />
+      <Protobuf Include="Clients\ProjectService\categories.proto" GrpcServices="Client" />
     </ItemGroup>
 
     <ItemGroup>
-      <Protobuf Include="Clients\ProjectService\categories.proto" GrpcServices="Client" />
+      <ProjectReference Include="..\..\..\Aspire\Drimstarter.ServiceDefaults\Drimstarter.ServiceDefaults.csproj" />
+      <ProjectReference Include="..\..\..\Common\Drimstarter.Common.Grpc\Drimstarter.Common.Grpc.csproj" />
+      <ProjectReference Include="..\..\..\Common\Drimstarter.Common.Web\Drimstarter.Common.Web.csproj" />
     </ItemGroup>
 
 </Project>
