@@ -1,5 +1,6 @@
 using Drimstarter.AccountService.Database;
 using Drimstarter.AccountService.Features.Accounts;
+using Drimstarter.AccountService.Features.Accounts.Options;
 using Drimstarter.Common.Database;
 using Drimstarter.Common.Grpc.Server;
 using Drimstarter.Common.Validation.Behaviors;
@@ -25,6 +26,8 @@ builder.AddNpgsqlDbContext<AccountDbContext>(ResourceNames.AccountServiceDb);
 
 // TODO: use different generator id for different replicas
 builder.Services.AddIdFactory(1);
+
+builder.Services.Configure<AccountsOptions>(builder.Configuration.GetSection("Features:Accounts"));
 
 var app = builder.Build();
 

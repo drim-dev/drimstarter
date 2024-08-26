@@ -1,10 +1,13 @@
 using Drimstarter.AccountService.Database;
 using Drimstarter.AccountService.Domain;
+using Drimstarter.AccountService.Features.Accounts.Options;
+using Drimstarter.AccountService.Features.Accounts.Services;
 using Drimstarter.Common.Database;
 using Drimstarter.Common.Validation.Extensions;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using static Drimstarter.AccountService.Features.Accounts.Errors.AccountValidationErrors;
 
 namespace Drimstarter.AccountService.Features.Accounts.Requests;
@@ -52,23 +55,28 @@ public static class CreateAccount
     {
         private readonly AccountDbContext _db;
         private readonly IdFactory _idFactory;
+        private readonly AccountsOptions _accountsOptions;
 
         public RequestHandler(
             AccountDbContext db,
-            IdFactory idFactory)
+            IdFactory idFactory,
+            IOptions<AccountsOptions> accountsOptions)
         {
             _db = db;
             _idFactory = idFactory;
+            _accountsOptions = accountsOptions.Value;
         }
 
         public async Task<CreateAccountReply> Handle(CreateAccountRequest request, CancellationToken cancellationToken)
         {
+            var passwordHash = PasswordHasher.HashPassword(request.Password, _accountsOptions.PasswordHashing);
+
             var account = new Account
             {
                 Id = _idFactory.Create(),
                 Name = request.Name,
                 Email = request.Email.ToLower(),
-                PasswordHash = request.Password,
+                PasswordHash = passwordHash,
             };
 
             _db.Accounts.Add(account);
