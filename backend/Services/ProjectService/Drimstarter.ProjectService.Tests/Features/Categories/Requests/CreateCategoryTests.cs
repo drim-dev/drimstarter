@@ -137,6 +137,6 @@ public class CreateCategoryValidatorTests : IAsyncLifetime
 
     private static CreateCategoryRequest CreateRequest(string? name = null) =>
         new AutoFaker<CreateCategoryRequest>()
-            .RuleFor(request => request.Name, faker => name ?? faker.Random.Word())
+            .RuleFor(r => r.Name, f => name ?? f.Random.Word())
             .Generate();
 }

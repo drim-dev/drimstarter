@@ -27,13 +27,14 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\Aspire\Drimstarter.ServiceDefaults\Drimstarter.ServiceDefaults.csproj" />
       <ProjectReference Include="..\..\..\Common\Drimstarter.Common.Tests.Database\Drimstarter.Common.Tests.Database.csproj" />
       <ProjectReference Include="..\..\..\Common\Drimstarter.Common.Tests.Grpc\Drimstarter.Common.Tests.Grpc.csproj" />
-      <ProjectReference Include="..\Drimstarter.ProjectService\Drimstarter.ProjectService.csproj" />
+      <ProjectReference Include="..\Drimstarter.AccountService\Drimstarter.AccountService.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <Protobuf Include="Features\Categories\categories.proto" GrpcServices="Client" />
+        <Protobuf Include="Features\Accounts\accounts.proto" GrpcServices="Client" />
     </ItemGroup>
-
+    
 </Project>

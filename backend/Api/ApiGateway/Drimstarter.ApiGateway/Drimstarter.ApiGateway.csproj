@@ -9,7 +9,7 @@
 
     <ItemGroup>
         <PackageReference Include="Grpc.Net.ClientFactory" Version="2.63.0" />
-        <PackageReference Include="Grpc.Tools" Version="2.65.0">
+        <PackageReference Include="Grpc.Tools" Version="2.63.0">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

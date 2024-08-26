@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "Drimstarter.AccountService";
+option csharp_namespace = "Drimstarter.AccountService.Client";
 
 package accounts;
 
