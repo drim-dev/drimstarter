@@ -1,13 +1,13 @@
 using System.Net.Http.Json;
-using Drimstarter.ApiGateway.Tests.Integration.Features.Categories.Contracts;
-using Drimstarter.ApiGateway.Tests.Integration.Fixtures;
+using Drimstarter.ApiGateway.Tests.Features.Categories.Contracts;
+using Drimstarter.ApiGateway.Tests.Fixtures;
 using Drimstarter.ApiGateway.Tests.Utils;
 using Drimstarter.ProjectService;
 using FluentAssertions;
 
-namespace Drimstarter.ApiGateway.Tests.Integration.Features.Categories.Requests;
+namespace Drimstarter.ApiGateway.Tests.Features.Categories.Requests;
 
-[Collection(CategoryTestsCollection.Name)]
+[Collection(TestsCollection.Name)]
 public class ListCategoriesTests : IAsyncLifetime
 {
     private readonly TestFixture _fixture;
@@ -38,15 +38,15 @@ public class ListCategoriesTests : IAsyncLifetime
             Categories = { categoryDtos },
         });
 
-        var categories = await Act();
+        var replyCategories = await Act();
 
-        categories.Should().NotBeNull();
-        categories!.Length.Should().Be(categoryDtos.Count);
+        replyCategories.Should().NotBeNull();
+        replyCategories!.Length.Should().Be(categoryDtos.Count);
 
         for (var i = 0; i < categoryDtos.Count; i++)
         {
-            categories[i].Id.Should().Be(categoryDtos[i].Id);
-            categories[i].Name.Should().Be(categoryDtos[i].Name);
+            replyCategories[i].Id.Should().Be(categoryDtos[i].Id);
+            replyCategories[i].Name.Should().Be(categoryDtos[i].Name);
         }
     }
 }

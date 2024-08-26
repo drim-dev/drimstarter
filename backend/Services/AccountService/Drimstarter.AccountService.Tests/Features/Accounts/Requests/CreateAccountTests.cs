@@ -30,7 +30,7 @@ public class CreateAccountTests : IAsyncLifetime
         var request = new Client.CreateAccountRequest
         {
             Name = "John Doe",
-            Email = "john@doe.com",
+            Email = "John@doe.com",
             Password = "Password1",
         };
 
@@ -41,20 +41,20 @@ public class CreateAccountTests : IAsyncLifetime
         accountDto.Should().NotBeNull();
         accountDto.Id.Should().NotBeEmpty();
         accountDto.Name.Should().Be(request.Name);
-        accountDto.Email.Should().Be(request.Email);
+        accountDto.Email.Should().Be(request.Email.ToLower());
 
-        var account = await _fixture.Database.SingleOrDefault<Account>(c => c.Id == IdEncoding.Decode(accountDto.Id),
+        var dbAccount = await _fixture.Database.SingleOrDefault<Account>(c => c.Id == IdEncoding.Decode(accountDto.Id),
             CreateCancellationToken());
 
-        account.Should().NotBeNull();
-        account!.Name.Should().Be(request.Name);
-        account.Email.Should().Be(request.Email);
+        dbAccount.Should().NotBeNull();
+        dbAccount!.Name.Should().Be(request.Name);
+        dbAccount.Email.Should().Be(request.Email.ToLower());
 
-        PasswordHasher.VerifyPassword(request.Password, account.PasswordHash).Should().BeTrue();
+        PasswordHasher.VerifyPassword(request.Password, dbAccount.PasswordHash).Should().BeTrue();
     }
 }
 
-// TODO: refactor to extract all logic up to request validation into a helper method
+// TODO: refactor to extract all logic including request validation into a helper method
 [Collection(AccountTestsCollection.Name)]
 public class CreateAccountValidatorTests : IAsyncLifetime
 {
@@ -215,7 +215,7 @@ public class CreateAccountValidatorTests : IAsyncLifetime
     }
 
     [Fact]
-    public async Task Should_have_error_when_password_no_uppercase()
+    public async Task Should_have_error_when_password_contains_no_uppercase()
     {
         await using var scope = _fixture.CreateScope();
         var validator = scope.ServiceProvider.GetRequiredService<CreateAccount.RequestValidator>();
@@ -229,7 +229,7 @@ public class CreateAccountValidatorTests : IAsyncLifetime
     }
 
     [Fact]
-    public async Task Should_have_error_when_password_no_lowercase()
+    public async Task Should_have_error_when_password_contains_no_lowercase()
     {
         await using var scope = _fixture.CreateScope();
         var validator = scope.ServiceProvider.GetRequiredService<CreateAccount.RequestValidator>();
@@ -243,7 +243,7 @@ public class CreateAccountValidatorTests : IAsyncLifetime
     }
 
     [Fact]
-    public async Task Should_have_error_when_password_no_number()
+    public async Task Should_have_error_when_password_contains_no_number()
     {
         await using var scope = _fixture.CreateScope();
         var validator = scope.ServiceProvider.GetRequiredService<CreateAccount.RequestValidator>();

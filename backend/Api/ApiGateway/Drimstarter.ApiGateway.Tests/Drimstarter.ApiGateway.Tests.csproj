@@ -24,6 +24,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Common\Drimstarter.Common.Tests\Drimstarter.Common.Tests.csproj" />
+      <ProjectReference Include="..\..\..\Services\AccountService\Drimstarter.AccountService.Harnesses\Drimstarter.AccountService.Harnesses.csproj" />
       <ProjectReference Include="..\..\..\Services\ProjectService\Drimstarter.ProjectService.Harnesses\Drimstarter.ProjectService.Harnesses.csproj" />
       <ProjectReference Include="..\Drimstarter.ApiGateway\Drimstarter.ApiGateway.csproj">
           <Aliases>api</Aliases>

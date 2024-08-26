@@ -33,7 +33,7 @@ public abstract class BaseServiceHarness<TProgram> : IHarness<TProgram>
         webApplicationBuilder.Services.AddSingleton<FakeMediatorSender>();
         webApplicationBuilder.Services.AddSingleton<ISender>(provider => provider.GetRequiredService<FakeMediatorSender>());
 
-        webApplicationBuilder.WebHost.UseUrls("http://0.0.0.0:0");
+        webApplicationBuilder.WebHost.UseUrls($"http://0.0.0.0:{_port}");
         webApplicationBuilder.WebHost.ConfigureKestrel((_, options) =>
         {
             options.Listen(IPAddress.Any, _port, listenOptions => listenOptions.Protocols = HttpProtocols.Http2);

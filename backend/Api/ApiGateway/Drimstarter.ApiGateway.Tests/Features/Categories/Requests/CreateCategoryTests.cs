@@ -1,21 +1,18 @@
 using System.Net.Http.Json;
-using Drimstarter.ApiGateway.Tests.Integration.Features.Categories.Contracts;
-using Drimstarter.ApiGateway.Tests.Integration.Fixtures;
+using Drimstarter.ApiGateway.Tests.Features.Categories.Contracts;
+using Drimstarter.ApiGateway.Tests.Fixtures;
 using Drimstarter.ApiGateway.Tests.Utils;
 using Drimstarter.ProjectService;
 using FluentAssertions;
 
-namespace Drimstarter.ApiGateway.Tests.Integration.Features.Categories.Requests;
+namespace Drimstarter.ApiGateway.Tests.Features.Categories.Requests;
 
-[Collection(CategoryTestsCollection.Name)]
+[Collection(TestsCollection.Name)]
 public class CreateCategoryTests : IAsyncLifetime
 {
     private readonly TestFixture _fixture;
 
-    public CreateCategoryTests(TestFixture fixture)
-    {
-        _fixture = fixture;
-    }
+    public CreateCategoryTests(TestFixture fixture) => _fixture = fixture;
 
     public Task InitializeAsync() => _fixture.Reset();
 
@@ -30,7 +27,7 @@ public class CreateCategoryTests : IAsyncLifetime
     }
 
     [Fact]
-    public async Task Should_create_category()
+    public async Task Should_create_category_using_project_service()
     {
         var categoryDto = FakeFactory.CreateCategoryDto();
 
@@ -39,12 +36,12 @@ public class CreateCategoryTests : IAsyncLifetime
             Category = categoryDto,
         });
 
-        var category = await Act(categoryDto.Name);
+        var replyCategory = await Act(categoryDto.Name);
 
         mock.Request.Name.Should().Be(categoryDto.Name);
 
-        category.Should().NotBeNull();
-        category!.Id.Should().Be(categoryDto.Id);
-        category.Name.Should().Be(categoryDto.Name);
+        replyCategory.Should().NotBeNull();
+        replyCategory!.Id.Should().Be(categoryDto.Id);
+        replyCategory.Name.Should().Be(categoryDto.Name);
     }
 }

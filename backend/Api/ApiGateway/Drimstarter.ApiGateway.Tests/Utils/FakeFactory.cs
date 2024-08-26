@@ -1,4 +1,5 @@
 using AutoBogus;
+using Drimstarter.AccountService;
 using Drimstarter.ProjectService;
 
 namespace Drimstarter.ApiGateway.Tests.Utils;
@@ -16,4 +17,10 @@ public static class FakeFactory
         new AutoFaker<CategoryDto>()
             .RuleFor(x => x.Id, f => f.Random.Word())
             .Generate(count);
+
+    public static AccountDto CreateAccountDto() =>
+        new AutoFaker<AccountDto>()
+            .RuleFor(d => d.Id, f => f.Random.Word())
+            .RuleFor(d => d.Email, f => f.Internet.Email())
+            .Generate();
 }

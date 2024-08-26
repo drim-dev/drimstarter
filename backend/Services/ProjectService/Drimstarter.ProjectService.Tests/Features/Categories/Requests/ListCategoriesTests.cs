@@ -23,9 +23,9 @@ public class ListCategoriesTests : IAsyncLifetime
     [Fact]
     public async Task Should_list_categories()
     {
-        var categories = FakeFactory.CreateCategories();
+        var dbCategories = FakeFactory.CreateCategories();
 
-        await _fixture.Database.Save(categories);
+        await _fixture.Database.Save(dbCategories);
 
         var request = new Client.ListCategoriesRequest();
 
@@ -34,12 +34,12 @@ public class ListCategoriesTests : IAsyncLifetime
         reply.Categories.Should().NotBeEmpty();
 
         // TODO: move to extension
-        categories.Should().HaveCount(reply.Categories.Count);
-        foreach (var category in categories)
+        reply.Categories.Should().HaveCount(dbCategories.Count);
+        foreach (var dbCategory in dbCategories)
         {
             reply.Categories.Should().Contain(c =>
-                c.Id == IdEncoding.Encode(category.Id) &&
-                c.Name == category.Name);
+                c.Id == IdEncoding.Encode(dbCategory.Id) &&
+                c.Name == dbCategory.Name);
         }
     }
 }

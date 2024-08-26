@@ -17,8 +17,8 @@ public static class CreateAccount
             app.MapPost(Path, async Task<Created<AccountModel>>
                 (ISender sender, Request body, CancellationToken cancellationToken) =>
             {
-                var category = await sender.Send(body, cancellationToken);
-                return TypedResults.Created($"{Path}/{category.Id}", category);
+                var account = await sender.Send(body, cancellationToken);
+                return TypedResults.Created($"{Path}/{account.Id}", account);
             });
         }
     }
