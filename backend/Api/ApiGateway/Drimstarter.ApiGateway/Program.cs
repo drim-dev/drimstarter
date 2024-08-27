@@ -8,11 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
-builder.Services.AddMediatR(config =>
-{
-    config.RegisterServicesFromAssembly(typeof(Program).Assembly);
-});
-
 // TODO: move to GrpcClientExtensions
 builder.Services.AddScoped<ClientExceptionInterceptor>();
 

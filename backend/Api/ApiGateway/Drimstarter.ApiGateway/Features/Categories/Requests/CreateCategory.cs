@@ -1,7 +1,6 @@
 using Drimstarter.ApiGateway.Features.Categories.Models;
 using Drimstarter.Common.Web.Endpoints;
 using Drimstarter.ProjectService.Client;
-using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Drimstarter.ApiGateway.Features.Categories.Requests;
@@ -14,31 +13,21 @@ public static class CreateCategory
 
         public void MapEndpoint(WebApplication app)
         {
-            app.MapPost(Path, async Task<Created<CategoryModel>>
-                (ISender sender, Request body, CancellationToken cancellationToken) =>
+            app.MapPost(Path, async Task<Created<CategoryModel>> (
+                Body body,
+                ProjectService.Client.Categories.CategoriesClient categoryClient,
+                CancellationToken cancellationToken) =>
             {
-                var category = await sender.Send(body, cancellationToken);
+                var request = new CreateCategoryRequest
+                {
+                    Name = body.Name
+                };
+                var reply = await categoryClient.CreateCategoryAsync(request, cancellationToken: cancellationToken);
+                var category = new CategoryModel(reply.Category.Id, reply.Category.Name);
                 return TypedResults.Created($"{Path}/{category.Id}", category);
             });
         }
     }
 
-    public record Request(string Name) : IRequest<CategoryModel>;
-
-    public class RequestHandler : IRequestHandler<Request, CategoryModel>
-    {
-        private readonly ProjectService.Client.Categories.CategoriesClient _categoryClient;
-
-        public RequestHandler(ProjectService.Client.Categories.CategoriesClient categoryClient)
-        {
-            _categoryClient = categoryClient;
-        }
-
-        public async Task<CategoryModel> Handle(Request request, CancellationToken cancellationToken)
-        {
-            var grpcRequest = new CreateCategoryRequest { Name = request.Name };
-            var reply = await _categoryClient.CreateCategoryAsync(grpcRequest, cancellationToken: cancellationToken);
-            return new CategoryModel(reply.Category.Id, reply.Category.Name);
-        }
-    }
+    private record Body(string Name);
 }

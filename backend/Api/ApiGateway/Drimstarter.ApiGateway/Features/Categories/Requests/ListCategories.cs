@@ -1,7 +1,6 @@
 using Drimstarter.ApiGateway.Features.Categories.Models;
 using Drimstarter.Common.Web.Endpoints;
 using Drimstarter.ProjectService.Client;
-using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Drimstarter.ApiGateway.Features.Categories.Requests;
@@ -15,32 +14,15 @@ public static class ListCategories
 
         public void MapEndpoint(WebApplication app)
         {
-            app.MapGet(Path, async Task<Ok<CategoryModel[]>>
-                (ISender sender, CancellationToken cancellationToken) =>
+            app.MapGet(Path, async Task<Ok<CategoryModel[]>> (
+                ProjectService.Client.Categories.CategoriesClient categoryClient,
+                CancellationToken cancellationToken) =>
             {
-                var request = new Request();
-                var categories = await sender.Send(request, cancellationToken);
+                var grpcRequest = new ListCategoriesRequest();
+                var reply = await categoryClient.ListCategoriesAsync(grpcRequest, cancellationToken: cancellationToken);
+                var categories = reply.Categories.Select(x => new CategoryModel(x.Id, x.Name)).ToArray();
                 return TypedResults.Ok(categories);
             });
-        }
-    }
-
-    public record Request : IRequest<CategoryModel[]>;
-
-    public class RequestHandler : IRequestHandler<Request, CategoryModel[]>
-    {
-        private readonly ProjectService.Client.Categories.CategoriesClient _categoryClient;
-
-        public RequestHandler(ProjectService.Client.Categories.CategoriesClient categoryClient)
-        {
-            _categoryClient = categoryClient;
-        }
-
-        public async Task<CategoryModel[]> Handle(Request request, CancellationToken cancellationToken)
-        {
-            var grpcRequest = new ListCategoriesRequest();
-            var reply = await _categoryClient.ListCategoriesAsync(grpcRequest, cancellationToken: cancellationToken);
-            return reply.Categories.Select(x => new CategoryModel(x.Id, x.Name)).ToArray();
         }
     }
 }
