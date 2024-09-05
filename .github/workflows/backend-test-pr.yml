@@ -24,4 +24,4 @@ jobs:
         dotnet-version: ${{ matrix.dotnet-version }}
 
     - name: Test
-      run: dotnet test -verbosity normal
+      run: dotnet test --verbosity normal
