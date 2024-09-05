@@ -27,4 +27,4 @@ jobs:
       run: dotnet workload restore
 
     - name: Test
-      run: dotnet test --verbosity normal
+      run: dotnet test --verbosity quiet
