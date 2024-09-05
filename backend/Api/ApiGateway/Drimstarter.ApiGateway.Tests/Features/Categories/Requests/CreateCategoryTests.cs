@@ -38,7 +38,8 @@ public class CreateCategoryTests : IAsyncLifetime
 
         var replyCategory = await Act(categoryDto.Name);
 
-        mock.Request.Name.Should().Be(categoryDto.Name);
+        mock.Request.Should().NotBeNull();
+        mock.Request!.Name.Should().Be(categoryDto.Name);
 
         replyCategory.Should().NotBeNull();
         replyCategory!.Id.Should().Be(categoryDto.Id);

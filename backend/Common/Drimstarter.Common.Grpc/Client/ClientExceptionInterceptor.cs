@@ -36,7 +36,7 @@ public class ClientExceptionInterceptor : Interceptor
 
             throw exception;
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             // TODO: log unhandled exception
             throw;
