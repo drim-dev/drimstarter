@@ -40,7 +40,8 @@ public class CreateAccountTests : IAsyncLifetime
         const string password = "password";
         var replyAccount = await Act(accountDto.Name, accountDto.Email, password);
 
-        mock.Request.Name.Should().Be(accountDto.Name);
+        mock.Request.Should().NotBeNull();
+        mock.Request!.Name.Should().Be(accountDto.Name);
         mock.Request.Email.Should().Be(accountDto.Email);
         mock.Request.Password.Should().Be(password);
 
