@@ -33,10 +33,19 @@ var notificationService = builder.AddProject<Projects.Drimstarter_NotificationSe
 
 var messagingService = builder.AddProject<Projects.Drimstarter_MessagingService>("messaging-service");
 
+var blockchainServiceDb = postgres.AddDatabase(ResourceNames.BlockchainServiceDb);
+
+var blockchainServiceSetup = builder.AddProject<Projects.Drimstarter_BlockchainService_Setup>(ResourceNames.BlockchainServiceSetup)
+    .WithReference(blockchainServiceDb);
+
+var blockchainService = builder.AddProject<Projects.Drimstarter_BlockchainService>(ResourceNames.BlockchainService)
+    .WithReference(blockchainServiceDb);
+
 var apiGateway = builder.AddProject<Projects.Drimstarter_ApiGateway>("api-gateway")
     .WithReference(projectService)
     .WithReference(accountService)
     .WithReference(paymentService)
+    .WithReference(blockchainService)
     .WithReference(notificationService);
 
 builder.Build().Run();
