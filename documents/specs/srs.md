@@ -18,6 +18,13 @@
         * [Get User Profile](#get-user-profile)
         * [Update User Profile](#update-user-profile)
         * [Update User Profile Avatar](#update-user-profile-avatar)
+    * [Project Creation](#project-creation)
+      * [Preconditions](#preconditions-2)
+      * [Main Flow](#main-flow-2)
+      * [Postconditions](#postconditions-2)
+      * [Backend Features](#backend-features-2)
+        * [Create project](#create-project)
+        * [Upload Project Media](#upload-project-media)
 
 ## Use Cases
 
@@ -182,6 +189,113 @@ PUT /users/{userId}/avatar
 Content-Type: multipart/form-data
 
 (Form-data with the 'avatar' field containing the image file)
+```
+
+__Response__:
+
+```http
+200 OK
+Content-Type: application/json
+
+{
+  "avatarUrl": "/images/abcdef"
+}
+```
+
+### Project Creation
+
+__Id__: ProjectCreation
+
+__Actors__: Registered User
+
+__Goal__: Enable users to create funding projects for their ideas or products.
+
+#### Preconditions
+
+* The user is logged into their account.
+
+#### Main Flow
+
+1. The user navigates to the "Create a Project" page.
+2. The system displays a project creation form.
+3. The user fills in the project details: title, description, story, funding goal, project duration (start and end dates), category, rewards for backers.
+4. The user uploads supporting media.
+5. The user submits the project for approval.
+
+#### Postconditions
+
+* The new project is created and pending approval.
+
+#### Backend Features
+
+##### Create project
+
+__Id__: ProjectCreation.CreateProject
+
+__Authz__: Registered User
+
+__Description__:
+
+Creates a new project.
+
+__Request__:
+
+```http
+POST /projects
+Content-Type: application/json
+
+{
+  "title": "Innovative Gadget",
+  "description": "An innovative gadget that improves daily life.",
+  "story": "This project was inspired by my passion for simplifying everyday tasks.",
+  "fundingGoal": 50000,
+  "startDate": "2024-10-01T00:00:00Z",
+  "endDate": "2024-11-30T00:00:00Z",
+  "categoryId": 1,
+  "rewards": [
+    {"amount": 10, "reward": "Thank you email"},
+    {"amount": 50, "reward": "Early access to the product"}
+  ]
+}
+```
+
+__Response__:
+
+```http
+201 Created
+Content-Type: application/json
+
+{
+  "id": "projectId456",
+  "title": "Innovative Gadget",
+  "description": "An innovative gadget that improves daily life.",
+  "story": "This project was inspired by my passion for simplifying everyday tasks.",
+  "fundingGoal": 50000,
+  "sum": 0,
+  "startDate": "2024-10-01T00:00:00Z",
+  "endDate": "2024-11-30T00:00:00Z",
+  "status": "Under Review",
+  "createdAt": "2024-09-26T09:00:00Z"
+}
+```
+
+##### Upload Project Media
+
+__Id__: ProjectCreation.UploadProjectMedia
+
+__Authz__: Registered User
+
+__Description__:
+
+Uploads media files for the project.
+
+__Request__:
+
+```http
+POST /projects/{projectId}/media
+Content-Type: multipart/form-data
+
+(Form-data with fields for 'images' and 'video')
 ```
 
 __Response__:
