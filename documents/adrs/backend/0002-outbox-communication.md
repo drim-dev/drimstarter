@@ -8,7 +8,7 @@ deciders: Asset Otinchiyev
 
 ## Context and Problem Statement
 
-In developing a backend for a crowdfunding platform Drimstarter, the need for reliable, scalable, and fault-tolerant message delivery in asynchronous communication between microservices has emerged. Messages between services, such as notifications, payment updates, or email triggers, need to be delivered reliably even in the case of failures, downtime, or errors. The primary question is: "Which approach ensures reliable asynchronous message delivery while maintaining transactional integrity?"
+Drimstarter is a crowdfunding platform where multiple microservices handle tasks such as notifications, payment updates, and email triggers. These services need to communicate asynchronously while ensuring that messages are delivered reliably, even in the case of failures or service downtime. The platform’s development also includes a training system for developers, where the goal is to expose them to a variety of tools and patterns, emphasizing reliability and transactional integrity over simplicity.
 
 ## Decision Drivers
 
@@ -17,6 +17,7 @@ In developing a backend for a crowdfunding platform Drimstarter, the need for re
 * **Decoupling**: The message sending process must be decoupled from the core business logic to avoid blocking operations.
 * **Transactional Integrity**: Messages should only be sent if the associated business logic is successfully committed.
 * **Developer Productivity**: The approach should be straightforward to implement, test, and maintain in a distributed microservices environment.
+* **Developer Training**: The solution should use message queues to train developers on their usage.
 
 ## Considered Options
 
@@ -25,6 +26,45 @@ In developing a backend for a crowdfunding platform Drimstarter, the need for re
 3. **Outbox Pattern**
 4. **Immediate Synchronous Sending with Retry Logic**
 5. **Manual Retry Mechanism**
+
+## Decision Outcome
+
+Chosen options: **Transactional Outbox with RabbitMQ** and **Transactional Outbox with Kafka**, because they provide a combination of strong message delivery guarantees, scalability, and fault tolerance, while ensuring transactional integrity and decoupling message production from delivery.
+
+### Consequences
+
+#### Transactional Outbox with RabbitMQ
+
+**Good, because**:
+
+* It ensures that messages are only sent if the related business transaction is successfully committed, avoiding inconsistencies.
+* Decoupling message delivery from business logic makes the system more resilient and scalable.
+* RabbitMQ provides fault-tolerant and highly scalable solutions with built-in retry and message durability mechanisms.
+
+**Bad, because**:
+
+* Adds complexity in managing infrastructure for RabbitMQ.
+* Requires additional storage and monitoring for managing the outbox and messaging queues, increasing infrastructure overhead.
+
+#### Transactional Outbox with Kafka
+
+**Good, because**:
+
+* Kafka is highly scalable and can handle a massive volume of messages with high throughput and durability.
+* The exactly-once delivery semantics in Kafka ensure robust reliability, particularly for critical transactional systems.
+* Kafka’s distributed nature makes it ideal for large-scale systems requiring fault tolerance and horizontal scaling.
+
+**Bad, because**:
+
+* Kafka setup and maintenance are more complex than RabbitMQ, requiring specialized operational expertise.
+* Kafka’s distributed architecture introduces some latency, which may be overkill for smaller systems or low-volume use cases.
+* Requires careful tuning of brokers, partitions, and consumers to achieve optimal performance and avoid bottlenecks.
+
+### Confirmation
+
+To confirm that the implementation aligns with this ADR, the team will conduct system-level tests to ensure that messages are only sent if the transaction commits successfully. Monitoring and logging will be used to track message statuses, retries, and failures. Performance benchmarks will be established to assess the impact of the outbox processing on system throughput.
+
+## Pros and Cons of the Options
 
 ### Transactional Outbox with RabbitMQ
 
@@ -48,7 +88,6 @@ In developing a backend for a crowdfunding platform Drimstarter, the need for re
 **Good, because**:
 
 * Kafka is highly scalable and well-suited for handling large volumes of messages with strong durability and fault tolerance.
-* Offers exactly-once message delivery semantics in combination with a transactional outbox pattern, providing robust reliability guarantees.
 * Kafka’s distributed architecture allows for high throughput, making it suitable for scaling in larger environments.
 
 **Bad, because**:
@@ -101,43 +140,6 @@ In developing a backend for a crowdfunding platform Drimstarter, the need for re
 * Risk of human error or delays in message delivery.
 * Poor user experience due to manual intervention.
 * Not scalable for high-volume or critical message processing.
-
-## Decision Outcome
-
-Chosen options: **Transactional Outbox with RabbitMQ** and **Transactional Outbox with Kafka**, because they provide a combination of strong message delivery guarantees, scalability, and fault tolerance, while ensuring transactional integrity and decoupling message production from delivery.
-
-### Consequences
-
-#### Transactional Outbox with RabbitMQ
-
-**Good, because**:
-
-* It ensures that messages are only sent if the related business transaction is successfully committed, avoiding inconsistencies.
-* Decoupling message delivery from business logic makes the system more resilient and scalable.
-* RabbitMQ provides fault-tolerant and highly scalable solutions with built-in retry and message durability mechanisms.
-
-**Bad, because**:
-
-* Adds complexity in managing infrastructure for RabbitMQ.
-* Requires additional storage and monitoring for managing the outbox and messaging queues, increasing infrastructure overhead.
-
-#### Transactional Outbox with Kafka
-
-**Good, because**:
-
-* Kafka is highly scalable and can handle a massive volume of messages with high throughput and durability.
-* The exactly-once delivery semantics in Kafka ensure robust reliability, particularly for critical transactional systems.
-* Kafka’s distributed nature makes it ideal for large-scale systems requiring fault tolerance and horizontal scaling.
-
-**Bad, because**:
-
-* Kafka setup and maintenance are more complex than RabbitMQ, requiring specialized operational expertise.
-* Kafka’s distributed architecture introduces some latency, which may be overkill for smaller systems or low-volume use cases.
-* Requires careful tuning of brokers, partitions, and consumers to achieve optimal performance and avoid bottlenecks.
-
-### Confirmation
-
-To confirm that the implementation aligns with this ADR, the team will conduct system-level tests to ensure that messages are only sent if the transaction commits successfully. Monitoring and logging will be used to track message statuses, retries, and failures. Performance benchmarks will be established to assess the impact of the outbox processing on system throughput.
 
 ## More Information
 
