@@ -13,10 +13,10 @@ public class BlockchainDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        MapCategory(modelBuilder);
+        MapAddress(modelBuilder);
     }
 
-    private static void MapCategory(ModelBuilder modelBuilder)
+    private static void MapAddress(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Address>(category =>
         {
