@@ -72,6 +72,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.AccountService.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.AccountService.Harnesses", "Services\AccountService\Drimstarter.AccountService.Harnesses\Drimstarter.AccountService.Harnesses.csproj", "{0FEAAF85-016F-44BC-85C8-0F8B0264957F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlockchainService", "BlockchainService", "{701E87DA-095B-411F-9DD6-6DC07B2138A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.BlockchainService.Harnesses", "Services\BlockchainService\Drimstarter.BlockchainService.Harnesses\Drimstarter.BlockchainService.Harnesses.csproj", "{F4A5EB6F-3157-492C-90C8-BE9169BDA7B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.BlockchainService", "Services\BlockchainService\Drimstarter.BlockchainService\Drimstarter.BlockchainService.csproj", "{028E3370-C8A0-4F80-B61A-B73ECAB35D9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.BlockchainService.Setup", "Services\BlockchainService\Drimstarter.BlockchainService.Setup\Drimstarter.BlockchainService.Setup.csproj", "{C2ABC259-7AA8-4BCF-B88F-3C0A32A1CF5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drimstarter.BlockchainService.Tests", "Services\BlockchainService\Drimstarter.BlockchainService.Tests\Drimstarter.BlockchainService.Tests.csproj", "{165B5480-A97E-42DB-A31B-5D829F0E5587}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -182,6 +192,22 @@ Global
 		{0FEAAF85-016F-44BC-85C8-0F8B0264957F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FEAAF85-016F-44BC-85C8-0F8B0264957F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FEAAF85-016F-44BC-85C8-0F8B0264957F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4A5EB6F-3157-492C-90C8-BE9169BDA7B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4A5EB6F-3157-492C-90C8-BE9169BDA7B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4A5EB6F-3157-492C-90C8-BE9169BDA7B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4A5EB6F-3157-492C-90C8-BE9169BDA7B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{028E3370-C8A0-4F80-B61A-B73ECAB35D9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{028E3370-C8A0-4F80-B61A-B73ECAB35D9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{028E3370-C8A0-4F80-B61A-B73ECAB35D9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{028E3370-C8A0-4F80-B61A-B73ECAB35D9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2ABC259-7AA8-4BCF-B88F-3C0A32A1CF5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2ABC259-7AA8-4BCF-B88F-3C0A32A1CF5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2ABC259-7AA8-4BCF-B88F-3C0A32A1CF5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2ABC259-7AA8-4BCF-B88F-3C0A32A1CF5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{165B5480-A97E-42DB-A31B-5D829F0E5587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{165B5480-A97E-42DB-A31B-5D829F0E5587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{165B5480-A97E-42DB-A31B-5D829F0E5587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{165B5480-A97E-42DB-A31B-5D829F0E5587}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4374A0FA-1D19-4636-9E45-C4A15BDCF4CC} = {58D6AE2C-C09D-446C-8509-7D57D66FF598}
@@ -216,5 +242,10 @@ Global
 		{179E8EF9-ED8B-41B2-8A26-A5E799DBE8BC} = {47C7A963-FA70-432E-8C6A-2B2B886416BB}
 		{30252F94-F2AA-40DD-A168-54493B9D41D9} = {9425CEB3-620D-4742-948D-59E8C9417D0A}
 		{0FEAAF85-016F-44BC-85C8-0F8B0264957F} = {9425CEB3-620D-4742-948D-59E8C9417D0A}
+		{701E87DA-095B-411F-9DD6-6DC07B2138A8} = {47C7A963-FA70-432E-8C6A-2B2B886416BB}
+		{F4A5EB6F-3157-492C-90C8-BE9169BDA7B1} = {701E87DA-095B-411F-9DD6-6DC07B2138A8}
+		{028E3370-C8A0-4F80-B61A-B73ECAB35D9C} = {701E87DA-095B-411F-9DD6-6DC07B2138A8}
+		{C2ABC259-7AA8-4BCF-B88F-3C0A32A1CF5C} = {701E87DA-095B-411F-9DD6-6DC07B2138A8}
+		{165B5480-A97E-42DB-A31B-5D829F0E5587} = {701E87DA-095B-411F-9DD6-6DC07B2138A8}
 	EndGlobalSection
 EndGlobal

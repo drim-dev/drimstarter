@@ -9,4 +9,8 @@ public static class ResourceNames
     public const string AccountServiceDb = "AccountServiceDb";
     public const string AccountService = "AccountService";
     public const string AccountServiceSetup = "AccountServiceSetup";
+
+    public const string BlockchainServiceDb = "BlockchainServiceDb";
+    public const string BlockchainService = "BlockchainService";
+    public const string BlockchainServiceSetup = "BlockchainServiceSetup";
 }
