@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "Drimstarter.BlockchainService";
+option csharp_namespace = "Drimstarter.BlockchainService.Client";
 
 package cryptopayments;
 
