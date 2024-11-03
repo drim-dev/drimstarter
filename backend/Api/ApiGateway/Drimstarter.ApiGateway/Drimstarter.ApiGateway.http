@@ -29,5 +29,5 @@ Content-Type: application/json
 
 ### Get deposit address
 
-GET {{ApiGateway_HostAddress}}/cryptopayments/
+GET {{ApiGateway_HostAddress}}/crypto-payments/addresses/
 Accept: application/json

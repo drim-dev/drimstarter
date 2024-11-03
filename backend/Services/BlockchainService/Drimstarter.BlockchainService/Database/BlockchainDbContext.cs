@@ -18,9 +18,9 @@ public class BlockchainDbContext : DbContext
 
     private static void MapAddress(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Address>(category =>
+        modelBuilder.Entity<Address>(address =>
         {
-            category.HasKey(c => c.AddressId);
+            address.HasKey(c => c.AddressId);
         });
     }
 }

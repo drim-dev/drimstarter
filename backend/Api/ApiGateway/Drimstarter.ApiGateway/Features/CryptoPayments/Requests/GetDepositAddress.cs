@@ -9,25 +9,23 @@ public static class GetDepositAddress
 {
     public class Endpoint : IEndpoint
     {
-        private const string Path = "/cryptopayments";
+        private const string Path = "/crypto-payments/addresses";
 
         public void MapEndpoint(WebApplication app)
         {
-            app.MapPost(Path, async Task<Created<DepositAddressModel>> (
-                Body body,
+            app.MapGet(Path, async Task<Ok<DepositAddressModel>> (
                 Blockchain.BlockchainClient cryptoPaymentsClient,
                 CancellationToken cancellationToken) =>
             {
                 var request = new GetDepositAddressRequest
                 {
-                    User = "1",
+                    UserId = "UserLoginOrId",
                 };
                 var reply = await cryptoPaymentsClient.GetDepositAddressAsync(request, cancellationToken: cancellationToken);
                 var depositAddress = new DepositAddressModel(reply.Address);
-                return TypedResults.Created($"{Path}/{depositAddress.AddressId}", depositAddress);
+
+                return TypedResults.Ok(depositAddress);
             });
         }
     }
-
-    private record Body(string Name);
 }

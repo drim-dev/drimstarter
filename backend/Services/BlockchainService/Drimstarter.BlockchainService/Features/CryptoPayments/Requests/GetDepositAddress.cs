@@ -4,6 +4,7 @@ using Drimstarter.BlockchainService.Database;
 using Drimstarter.BlockchainService.Domain;
 using FluentValidation;
 using MediatR;
+using NBitcoin;
 using static Drimstarter.BlockchainService.Features.CryptoPayments.Errors.CryptoPaymentsValidationErrors;
 
 namespace Drimstarter.BlockchainService.Features.CryptoPayments.Requests;
@@ -14,7 +15,7 @@ public static class GetDepositAddress
     {
         public RequestValidator(BlockchainDbContext db)
         {
-            RuleFor(x => x.User)
+            RuleFor(x => x.UserId)
                 .NotEmpty(UserIdEmpty);
         }
     }
@@ -32,19 +33,22 @@ public static class GetDepositAddress
             _idFactory = idFactory;
         }
 
-        public async Task<GetDepositAddressReply> Handle(GetDepositAddressRequest request, CancellationToken cancellationToken)
+        public async Task<GetDepositAddressReply> Handle(GetDepositAddressRequest request,
+            CancellationToken cancellationToken)
         {
+            var bitcoinAddress = new Key().PubKey.GetAddress(ScriptPubKeyType.Legacy, Network.Main).ToString();
+
             var address = new Address()
             {
                 AddressId = _idFactory.Create(),
-                // TODO: write tests
-                UserId = Guid.NewGuid().ToString(),
+                UserId = request.UserId,
+                BitcoinAddress = bitcoinAddress
             };
 
             _db.Addresses.Add(address);
             await _db.SaveChangesAsync(cancellationToken);
 
-            return new() { Address = address.AddressId.ToString() };
+            return new GetDepositAddressReply { Address = address.BitcoinAddress };
         }
     }
 }

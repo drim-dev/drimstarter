@@ -12,7 +12,7 @@ service Blockchain {
 
 // The request message containing the user's id.
 message GetDepositAddressRequest {
-  string user = 1;
+  string userId = 1;
 }
 
 // The response message containing the deposit address.
