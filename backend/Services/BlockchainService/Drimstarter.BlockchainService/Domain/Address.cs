@@ -2,9 +2,9 @@ namespace Drimstarter.BlockchainService.Domain;
 
 public class Address
 {
-    public long AddressId { get; set; }
+    public long Id { get; init; }
 
-    public string BitcoinAddress { get; set; }
+    public required string BitcoinAddress { get; init; }
 
     public required string UserId { get; init; }
 }

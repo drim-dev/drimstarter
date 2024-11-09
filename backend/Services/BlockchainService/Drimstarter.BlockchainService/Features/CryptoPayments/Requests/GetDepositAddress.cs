@@ -36,11 +36,11 @@ public static class GetDepositAddress
         public async Task<GetDepositAddressReply> Handle(GetDepositAddressRequest request,
             CancellationToken cancellationToken)
         {
-            var bitcoinAddress = new Key().PubKey.GetAddress(ScriptPubKeyType.Legacy, Network.Main).ToString();
+            var bitcoinAddress = new Key().PubKey.GetAddress(ScriptPubKeyType.Segwit, Network.Main).ToString();
 
             var address = new Address()
             {
-                AddressId = _idFactory.Create(),
+                Id = _idFactory.Create(),
                 UserId = request.UserId,
                 BitcoinAddress = bitcoinAddress
             };

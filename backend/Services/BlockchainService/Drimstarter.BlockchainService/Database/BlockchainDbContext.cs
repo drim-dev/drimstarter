@@ -5,6 +5,8 @@ namespace Drimstarter.BlockchainService.Database;
 
 public class BlockchainDbContext : DbContext
 {
+    private const int BitcoinAddressMaxLength = 35;
+
     public BlockchainDbContext(DbContextOptions<BlockchainDbContext> options) : base(options)
     {
     }
@@ -20,7 +22,18 @@ public class BlockchainDbContext : DbContext
     {
         modelBuilder.Entity<Address>(address =>
         {
-            address.HasKey(c => c.AddressId);
+            address.HasKey(a => a.Id);
+
+            address.Property(a => a.BitcoinAddress)
+                .HasMaxLength(BitcoinAddressMaxLength)
+                .IsRequired();
+
+            address.Property(a => a.UserId)
+                .IsRequired();
+
+            address.HasIndex(a => a.UserId)
+                .IsUnique();
+
         });
     }
 }

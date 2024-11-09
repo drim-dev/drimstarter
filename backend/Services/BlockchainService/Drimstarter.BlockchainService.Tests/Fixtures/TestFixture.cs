@@ -24,7 +24,7 @@ public class TestFixture : IAsyncLifetime
     }
 
     public DatabaseHarness<Program, BlockchainDbContext> Database { get; }
-    public Blockchain.BlockchainClient BlockchainClient { get; private set; }
+    public Drimstarter.BlockchainService.Client.Blockchain.BlockchainClient BlockchainClient { get; private set; }
 
     public AsyncServiceScope CreateScope() => _factory.Services.CreateAsyncScope();
 
@@ -41,7 +41,7 @@ public class TestFixture : IAsyncLifetime
 
         await _grpcChannel.Start(_factory, CreateCancellationToken(60));
 
-        BlockchainClient = new Blockchain.BlockchainClient(_grpcChannel.GrpcChannel);
+        BlockchainClient = new BlockchainService.Client.Blockchain.BlockchainClient(_grpcChannel.GrpcChannel);
 
         await Database.Migrate(CreateCancellationToken());
     }
