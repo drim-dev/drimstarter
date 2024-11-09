@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Drimstarter.BlockchainService.Migrations
 {
     [DbContext(typeof(BlockchainDbContext))]
-    [Migration("20241109161652_InitialCreate")]
+    [Migration("20241109180815_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -34,8 +34,8 @@ namespace Drimstarter.BlockchainService.Migrations
 
                     b.Property<string>("BitcoinAddress")
                         .IsRequired()
-                        .HasMaxLength(35)
-                        .HasColumnType("character varying(35)");
+                        .HasMaxLength(74)
+                        .HasColumnType("character varying(74)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -43,8 +43,7 @@ namespace Drimstarter.BlockchainService.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("Addresses");
                 });

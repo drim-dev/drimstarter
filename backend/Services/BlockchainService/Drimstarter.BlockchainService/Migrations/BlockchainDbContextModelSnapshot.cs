@@ -31,8 +31,8 @@ namespace Drimstarter.BlockchainService.Migrations
 
                     b.Property<string>("BitcoinAddress")
                         .IsRequired()
-                        .HasMaxLength(35)
-                        .HasColumnType("character varying(35)");
+                        .HasMaxLength(74)
+                        .HasColumnType("character varying(74)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -40,8 +40,7 @@ namespace Drimstarter.BlockchainService.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("Addresses");
                 });

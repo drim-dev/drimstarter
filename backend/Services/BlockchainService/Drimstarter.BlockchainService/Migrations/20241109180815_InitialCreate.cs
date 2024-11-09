@@ -17,7 +17,7 @@ namespace Drimstarter.BlockchainService.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    BitcoinAddress = table.Column<string>(type: "character varying(35)", maxLength: 35, nullable: false),
+                    BitcoinAddress = table.Column<string>(type: "character varying(74)", maxLength: 74, nullable: false),
                     UserId = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -28,8 +28,7 @@ namespace Drimstarter.BlockchainService.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_UserId",
                 table: "Addresses",
-                column: "UserId",
-                unique: true);
+                column: "UserId");
         }
 
         /// <inheritdoc />

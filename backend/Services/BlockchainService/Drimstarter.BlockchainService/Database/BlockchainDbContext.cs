@@ -5,7 +5,13 @@ namespace Drimstarter.BlockchainService.Database;
 
 public class BlockchainDbContext : DbContext
 {
-    private const int BitcoinAddressMaxLength = 35;
+    /// <summary>
+    /// The maximum length of a Bitcoin address.
+    /// [Segwit] addresses are always between 14 and 74 characters long.
+    /// Version 0 witness addresses are always 42 or 62 characters.
+    /// Source: https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki
+    /// </summary>
+    private const int BitcoinAddressMaxLength = 74;
 
     public BlockchainDbContext(DbContextOptions<BlockchainDbContext> options) : base(options)
     {
@@ -31,8 +37,7 @@ public class BlockchainDbContext : DbContext
             address.Property(a => a.UserId)
                 .IsRequired();
 
-            address.HasIndex(a => a.UserId)
-                .IsUnique();
+            address.HasIndex(a => a.UserId);
 
         });
     }
