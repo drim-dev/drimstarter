@@ -75,7 +75,7 @@ public class SingleResponseMethodMock<TRequest, TResponse>
         Invoked = true;
     }
 
-    public TRequest Request { get; private set; }
-    public TResponse Response { get; private set; }
+    public TRequest? Request { get; private set; }
+    public TResponse? Response { get; private set; }
     public bool Invoked { get; private set; }
 }
