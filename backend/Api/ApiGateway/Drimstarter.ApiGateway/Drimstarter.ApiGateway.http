@@ -26,3 +26,8 @@ Content-Type: application/json
   "email": "John@doe.com",
   "password": "Pass1123"
 }
+
+### Get deposit address
+
+GET {{ApiGateway_HostAddress}}/crypto-payments/addresses/
+Accept: application/json

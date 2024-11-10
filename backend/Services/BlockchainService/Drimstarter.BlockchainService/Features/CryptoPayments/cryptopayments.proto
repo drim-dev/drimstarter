@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "Drimstarter.BlockchainService";
+
+package cryptopayments;
+
+// The greeting service definition.
+service Blockchain {
+  // Creates a deposit address if non-existent or returns an address that is already created
+  rpc GetDepositAddress (GetDepositAddressRequest) returns (GetDepositAddressReply);
+}
+
+// The request message containing the user's id.
+message GetDepositAddressRequest {
+  string userId = 1;
+}
+
+// The response message containing the deposit address.
+message GetDepositAddressReply {
+  string address = 1;
+}

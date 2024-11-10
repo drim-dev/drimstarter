@@ -18,6 +18,8 @@
       <ProjectReference Include="..\..\Api\ApiGateway\Drimstarter.ApiGateway\Drimstarter.ApiGateway.csproj" />
       <ProjectReference Include="..\..\Services\AccountService\Drimstarter.AccountService.Setup\Drimstarter.AccountService.Setup.csproj" />
       <ProjectReference Include="..\..\Services\AccountService\Drimstarter.AccountService\Drimstarter.AccountService.csproj" />
+      <ProjectReference Include="..\..\Services\BlockchainService\Drimstarter.BlockchainService.Setup\Drimstarter.BlockchainService.Setup.csproj" />
+      <ProjectReference Include="..\..\Services\BlockchainService\Drimstarter.BlockchainService\Drimstarter.BlockchainService.csproj" />
       <ProjectReference Include="..\..\Services\MessagingService\Drimstarter.MessagingService\Drimstarter.MessagingService.csproj" />
       <ProjectReference Include="..\..\Services\NotificationService\Drimstarter.NotificationService.Setup\Drimstarter.NotificationService.Setup.csproj" />
       <ProjectReference Include="..\..\Services\NotificationService\Drimstarter.NotificationService\Drimstarter.NotificationService.csproj" />

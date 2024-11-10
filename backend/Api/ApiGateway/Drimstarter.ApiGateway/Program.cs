@@ -23,6 +23,12 @@ builder.Services.AddGrpcClient<Drimstarter.AccountService.Client.Accounts.Accoun
     options.InterceptorRegistrations.Add(new InterceptorRegistration(InterceptorScope.Channel, p => p.GetRequiredService<ClientExceptionInterceptor>()));
 });
 
+builder.Services.AddGrpcClient<Drimstarter.BlockchainService.Client.Blockchain.BlockchainClient>(options =>
+{
+    options.Address = new Uri($"http://{ResourceNames.BlockchainService}");
+    options.InterceptorRegistrations.Add(new InterceptorRegistration(InterceptorScope.Channel, p => p.GetRequiredService<ClientExceptionInterceptor>()));
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
