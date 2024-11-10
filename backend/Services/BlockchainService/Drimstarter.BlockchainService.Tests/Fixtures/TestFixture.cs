@@ -24,7 +24,7 @@ public class TestFixture : IAsyncLifetime
     }
 
     public DatabaseHarness<Program, BlockchainDbContext> Database { get; }
-    public Drimstarter.BlockchainService.Client.Blockchain.BlockchainClient BlockchainClient { get; private set; }
+    public Drimstarter.BlockchainService.Client.Blockchain.BlockchainClient? BlockchainClient { get; private set; }
 
     public AsyncServiceScope CreateScope() => _factory.Services.CreateAsyncScope();
 
