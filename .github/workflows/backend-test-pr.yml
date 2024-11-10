@@ -1,0 +1,30 @@
+name: Backend Test on PR
+
+on:
+  pull_request:
+    paths:
+    - 'backend/**'
+    - '.github/workflows/backend-test-pr.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    strategy:
+      matrix:
+        dotnet-version: ['8.0.x']
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
+
+    - name: Install .NET workloads
+      run: dotnet workload restore
+
+    - name: Test
+      run: dotnet test --verbosity quiet
