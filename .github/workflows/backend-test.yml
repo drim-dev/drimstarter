@@ -4,7 +4,14 @@ on:
   pull_request:
     paths:
     - 'backend/**'
-    - '.github/workflows/backend-test-pr.yml'
+    - '.github/workflows/backend-test.yml'
+  push:
+    branches:
+    - main
+    - develop
+    paths:
+    - 'backend/**'
+    - '.github/workflows/backend-test.yml'
 
 jobs:
   test:
@@ -14,7 +21,7 @@ jobs:
         working-directory: ./backend
     strategy:
       matrix:
-        dotnet-version: ['8.0.x']
+        dotnet-version: ['9.0.x']
     steps:
     - uses: actions/checkout@v3
 
