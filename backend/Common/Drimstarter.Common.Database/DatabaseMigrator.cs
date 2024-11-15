@@ -31,7 +31,7 @@ public static class DatabaseMigrator
         }
         catch (Exception ex)
         {
-            Activity.Current?.RecordException(ex);
+            Activity.Current?.AddException(ex);
 
             logger.LogError(ex, "An error occurred while migrating the database.");
 
