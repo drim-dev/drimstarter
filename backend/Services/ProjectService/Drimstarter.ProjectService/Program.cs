@@ -27,6 +27,8 @@ builder.Services.AddGrpcServer();
 // TODO: use different generator id for different replicas
 builder.Services.AddIdFactory(1);
 
+builder.Services.AddPaging(builder.Configuration);
+
 var app = builder.Build();
 
 app.MapGrpcService<CategoryApi>();

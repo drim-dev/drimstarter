@@ -17,7 +17,7 @@ Accept: application/json
 
 ### List projects
 
-GET {{ApiGateway_HostAddress}}/projects?maxPageSize=3&pageToken=7S4EYnn1yBqsCIf-R4ETA9Nc3HWz3AuEZuJ1Ama1Pxb22qfao97MTo79VF5SmqFJ
+GET {{ApiGateway_HostAddress}}/projects?sort=-title&pageToken=KJS97GGB5DS42D4SETX2XGQam04ST5GF96BH77Y7EG0RJTZCHWQXWMWXK8TR2CRZY673XE8V5S6RT
 Accept: application/json
 
 ### Create account
