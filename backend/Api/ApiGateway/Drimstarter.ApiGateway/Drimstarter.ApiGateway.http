@@ -15,6 +15,11 @@ Content-Type: application/json
 GET {{ApiGateway_HostAddress}}/categories/
 Accept: application/json
 
+### List projects
+
+GET {{ApiGateway_HostAddress}}/projects?maxPageSize=3&pageToken=7S4EYnn1yBqsCIf-R4ETA9Nc3HWz3AuEZuJ1Ama1Pxb22qfao97MTo79VF5SmqFJ
+Accept: application/json
+
 ### Create account
 
 POST {{ApiGateway_HostAddress}}/accounts/

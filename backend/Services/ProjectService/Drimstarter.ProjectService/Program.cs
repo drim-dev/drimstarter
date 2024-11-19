@@ -3,6 +3,7 @@ using Drimstarter.Common.Grpc.Server;
 using Drimstarter.Common.Validation.Behaviors;
 using Drimstarter.ProjectService.Database;
 using Drimstarter.ProjectService.Features.Categories;
+using Drimstarter.ProjectService.Features.Projects;
 using Drimstarter.ServiceDefaults;
 using FluentValidation;
 
@@ -29,6 +30,7 @@ builder.Services.AddIdFactory(1);
 var app = builder.Build();
 
 app.MapGrpcService<CategoryApi>();
+app.MapGrpcService<ProjectApi>();
 
 app.Run();
 

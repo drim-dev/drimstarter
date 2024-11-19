@@ -21,6 +21,7 @@ public static class ListCategories
                 var grpcRequest = new ListCategoriesRequest();
                 var reply = await categoryClient.ListCategoriesAsync(grpcRequest, cancellationToken: cancellationToken);
                 var categories = reply.Categories.Select(x => new CategoryModel(x.Id, x.Name)).ToArray();
+
                 return TypedResults.Ok(categories);
             });
         }

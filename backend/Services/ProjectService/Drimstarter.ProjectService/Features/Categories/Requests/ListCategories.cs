@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Drimstarter.ProjectService.Features.Categories.Requests;
 
-public class ListCategories
+public static class ListCategories
 {
     public class RequestHandler : IRequestHandler<ListCategoriesRequest, ListCategoriesReply>
     {

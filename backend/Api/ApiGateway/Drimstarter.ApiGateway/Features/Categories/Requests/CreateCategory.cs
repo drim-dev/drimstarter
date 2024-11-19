@@ -24,6 +24,7 @@ public static class CreateCategory
                 };
                 var reply = await categoryClient.CreateCategoryAsync(request, cancellationToken: cancellationToken);
                 var category = new CategoryModel(reply.Category.Id, reply.Category.Name);
+
                 return TypedResults.Created($"{Path}/{category.Id}", category);
             });
         }

@@ -1,3 +1,4 @@
+using Drimstarter.Common.Database;
 using Drimstarter.ProjectService.Database;
 using Drimstarter.ProjectService.Setup;
 using Drimstarter.ServiceDefaults;
@@ -12,6 +13,8 @@ builder.Services.AddOpenTelemetry()
 builder.AddNpgsqlDbContext<ProjectDbContext>(ResourceNames.ProjectServiceDb);
 
 builder.Services.AddHostedService<SetupWorker>();
+
+builder.Services.AddIdFactory(1);
 
 var host = builder.Build();
 

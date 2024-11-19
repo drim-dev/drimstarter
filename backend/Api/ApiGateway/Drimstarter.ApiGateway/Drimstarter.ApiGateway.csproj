@@ -22,6 +22,7 @@
       <Protobuf Include="Clients\AccountService\accounts.proto" GrpcServices="Client" />
       <Protobuf Include="Clients\BlockchainService\cryptopayments.proto" GrpcServices="Client" />
       <Protobuf Include="Clients\ProjectService\categories.proto" GrpcServices="Client" />
+      <Protobuf Include="Clients\ProjectService\projects.proto" GrpcServices="Client" />
     </ItemGroup>
 
     <ItemGroup>

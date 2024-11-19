@@ -1,4 +1,5 @@
 using Drimstarter.Common.Grpc.Shared;
+using Drimstarter.Common.Grpc.Shared.Exceptions;
 using Grpc.Core;
 using Grpc.Core.Interceptors;
 

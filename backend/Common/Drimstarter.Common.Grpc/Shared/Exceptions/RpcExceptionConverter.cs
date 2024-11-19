@@ -2,7 +2,7 @@ using System.Text.Json;
 using Drimstarter.Common.Errors.Exceptions;
 using Grpc.Core;
 
-namespace Drimstarter.Common.Grpc.Shared;
+namespace Drimstarter.Common.Grpc.Shared.Exceptions;
 
 // TODO: check and test logic
 public static class RpcExceptionConverter

@@ -19,6 +19,7 @@
 
     <ItemGroup>
       <Protobuf Include="Features\Categories\categories.proto" GrpcServices="Server" />
+      <Protobuf Include="Features\Projects\projects.proto" GrpcServices="Server" />
     </ItemGroup>
 
     <ItemGroup>

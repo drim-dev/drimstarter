@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option csharp_namespace = "Drimstarter.ProjectService.Client";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+package projects;
+
+service Projects {
+  rpc ListProjects (ListProjectsRequest) returns (ListProjectsReply);
+}
+
+message ListProjectsRequest {
+  optional google.protobuf.StringValue categoryId = 1;
+  optional google.protobuf.StringValue sort = 2;
+  optional google.protobuf.StringValue pageToken = 3;
+  optional google.protobuf.Int32Value maxPageSize = 4;
+}
+
+message ListProjectsReply {
+  repeated ProjectDto projects = 1;
+  optional google.protobuf.StringValue nextPageToken = 2;
+}
+
+message ProjectDto {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  string story = 4;
+  string fundingGoal = 5;
+  string currentFunding = 6;
+  google.protobuf.Timestamp startDate = 7;
+  google.protobuf.Timestamp endDate = 8;
+}
