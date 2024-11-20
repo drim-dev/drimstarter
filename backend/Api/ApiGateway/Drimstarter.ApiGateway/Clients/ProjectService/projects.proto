@@ -8,17 +8,56 @@ import "google/protobuf/wrappers.proto";
 package projects;
 
 service Projects {
-  rpc ListProjects (ListProjectsRequest) returns (ListProjectsReply);
+  rpc ListProjectsPage (ListProjectsPageRequest) returns (ListProjectsPageReply);
+  rpc ListProjectsOffsetLimit (ListProjectsOffsetLimitRequest) returns (ListProjectsOffsetLimitReply);
+  rpc ListProjectsKeyset (ListProjectsKeysetRequest) returns (ListProjectsKeysetReply);
+  rpc ListProjectsPageToken (ListProjectsPageTokenRequest) returns (ListProjectsPageTokenReply);
 }
 
-message ListProjectsRequest {
+message ListProjectsPageRequest {
+  optional google.protobuf.StringValue categoryId = 1;
+  optional google.protobuf.StringValue sort = 2;
+  optional google.protobuf.Int32Value page = 3;
+  optional google.protobuf.Int32Value pageSize = 4;
+}
+
+message ListProjectsPageReply {
+  repeated ProjectDto projects = 1;
+  int32 totalItems = 2;
+}
+
+message ListProjectsOffsetLimitRequest {
+  optional google.protobuf.StringValue categoryId = 1;
+  optional google.protobuf.StringValue sort = 2;
+  optional google.protobuf.Int32Value offset = 3;
+  optional google.protobuf.Int32Value limit = 4;
+}
+
+message ListProjectsOffsetLimitReply {
+  repeated ProjectDto projects = 1;
+  bool hasMore = 2;
+}
+
+message ListProjectsKeysetRequest {
+  optional google.protobuf.StringValue categoryId = 1;
+  // No sort field, because it cannot be used for keyset pagination
+  optional google.protobuf.StringValue startAfter = 2;
+  optional google.protobuf.Int32Value pageSize = 3;
+}
+
+message ListProjectsKeysetReply {
+  repeated ProjectDto projects = 1;
+  optional google.protobuf.StringValue nextStartAfter = 2;
+}
+
+message ListProjectsPageTokenRequest {
   optional google.protobuf.StringValue categoryId = 1;
   optional google.protobuf.StringValue sort = 2;
   optional google.protobuf.StringValue pageToken = 3;
   optional google.protobuf.Int32Value maxPageSize = 4;
 }
 
-message ListProjectsReply {
+message ListProjectsPageTokenReply {
   repeated ProjectDto projects = 1;
   optional google.protobuf.StringValue nextPageToken = 2;
 }

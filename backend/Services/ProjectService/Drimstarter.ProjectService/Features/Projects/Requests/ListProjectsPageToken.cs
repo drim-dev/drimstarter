@@ -10,7 +10,7 @@ namespace Drimstarter.ProjectService.Features.Projects.Requests;
 
 public static class ListProjects
 {
-    public class RequestHandler : IRequestHandler<ListProjectsRequest, ListProjectsReply>
+    public class RequestHandler : IRequestHandler<ListProjectsPageTokenRequest, ListProjectsPageTokenReply>
     {
         private readonly ProjectDbContext _db;
         private readonly LimitOffsetPaging _paging;
@@ -23,7 +23,7 @@ public static class ListProjects
             _paging = paging;
         }
 
-        public async Task<ListProjectsReply> Handle(ListProjectsRequest request, CancellationToken cancellationToken)
+        public async Task<ListProjectsPageTokenReply> Handle(ListProjectsPageTokenRequest request, CancellationToken cancellationToken)
         {
             var requestCategoryId = request.CategoryId?.ToLower();
             var requestSort = request.Sort?.ToLower();
@@ -93,7 +93,7 @@ public static class ListProjects
             var nextPageToken = _paging.CreateNextPageToken(projects.Count, offset.Value, limit.Value, requestCategoryId,
                 requestSort);
 
-            var reply = new ListProjectsReply
+            var reply = new ListProjectsPageTokenReply
             {
                 Projects = { projects },
                 NextPageToken = nextPageToken,
