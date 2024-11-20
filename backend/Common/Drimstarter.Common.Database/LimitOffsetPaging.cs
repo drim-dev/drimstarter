@@ -7,14 +7,14 @@ using SimpleBase;
 
 namespace Drimstarter.Common.Database;
 
-public class Paging
+public class LimitOffsetPaging
 {
     private readonly byte[] _encryptionKey;
     private readonly byte[] _iv;
     private readonly int _defaultMaxPageSize;
     private readonly int _maxMaxPageSize;
 
-    public Paging(IOptions<PagingOptions> options)
+    public LimitOffsetPaging(IOptions<PagingOptions> options)
     {
         _encryptionKey = Convert.FromBase64String(options.Value.TokenEncryptionKeyInBase64);
         _iv = Convert.FromBase64String(options.Value.TokenIvInBase64);
@@ -110,7 +110,7 @@ public static class Extensions
     {
         services.Configure<PagingOptions>(configuration.GetSection("Database:Paging"));
 
-        services.AddSingleton<Paging>();
+        services.AddSingleton<LimitOffsetPaging>();
 
         return services;
     }

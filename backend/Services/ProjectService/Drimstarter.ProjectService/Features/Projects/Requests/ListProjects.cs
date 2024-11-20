@@ -13,11 +13,11 @@ public static class ListProjects
     public class RequestHandler : IRequestHandler<ListProjectsRequest, ListProjectsReply>
     {
         private readonly ProjectDbContext _db;
-        private readonly Paging _paging;
+        private readonly LimitOffsetPaging _paging;
 
         public RequestHandler(
             ProjectDbContext db,
-            Paging paging)
+            LimitOffsetPaging paging)
         {
             _db = db;
             _paging = paging;
