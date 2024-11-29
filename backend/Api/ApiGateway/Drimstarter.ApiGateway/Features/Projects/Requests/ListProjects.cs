@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Drimstarter.ApiGateway.Features.Projects.Requests;
 
-public static class ListProjectsPageToken
+public static class ListProjects
 {
-    private const string Path = "/projects/page-token";
+    private const string Path = "/projects";
 
     public class Endpoint : IEndpoint
     {
         public void MapEndpoint(WebApplication app)
         {
-            app.MapGet(Path, async Task<Ok<PageTokenResponse<ProjectModel>>> (
+            app.MapGet(Path, async Task<Ok<PageResponse<ProjectModel>>> (
                 string? categoryId,
                 string? sort,
                 string? pageToken,
@@ -22,7 +22,7 @@ public static class ListProjectsPageToken
                 ProjectService.Client.Projects.ProjectsClient projectClient,
                 CancellationToken cancellationToken) =>
             {
-                var grpcRequest = new ListProjectsPageTokenRequest
+                var grpcRequest = new ListProjectsRequest
                 {
                     CategoryId = categoryId,
                     Sort = sort,
@@ -30,14 +30,14 @@ public static class ListProjectsPageToken
                     MaxPageSize = maxPageSize,
                 };
 
-                var reply = await projectClient.ListProjectsPageTokenAsync(grpcRequest, cancellationToken: cancellationToken);
+                var reply = await projectClient.ListProjectsAsync(grpcRequest, cancellationToken: cancellationToken);
 
                 var projects = reply.Projects
                     .Select(x => new ProjectModel(x.Id, x.Title, x.Description, x.Story, x.FundingGoal.FromGrpcDecimal(),
                         x.CurrentFunding.FromGrpcDecimal(), x.StartDate.ToDateTime(), x.EndDate.ToDateTime()))
                     .ToArray();
 
-                return TypedResults.Ok(new PageTokenResponse<ProjectModel>(projects, reply.NextPageToken));
+                return TypedResults.Ok(new PageResponse<ProjectModel>(projects, reply.NextPageToken));
             });
         }
     }

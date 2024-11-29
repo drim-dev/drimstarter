@@ -15,24 +15,10 @@ Content-Type: application/json
 GET {{ApiGateway_HostAddress}}/categories/
 Accept: application/json
 
-### List projects with page
+### List projects
 
-GET {{ApiGateway_HostAddress}}/projects/page
+GET {{ApiGateway_HostAddress}}/projects?sort=-title&pageToken=KJS97GGB5DS42D4SETX2XGQam04ST5GF96BH77Y7EG0RJTZCHWQXWMWXK8TR2CRZY673XE8V5S6RT
 Accept: application/json
-
-### List projects with offset and limit
-
-GET {{ApiGateway_HostAddress}}/projects/offset-limit
-Accept: application/json
-
-### List projects with keyset
-
-GET {{ApiGateway_HostAddress}}/projects/keyset?pageSize=3&startAfter=1042m6hp8m100g8
-Accept: application/json
-
-### List projects with page token
-
-GET {{ApiGateway_HostAddress}}/projects/page-token?sort=title&maxPageSize=3&pageToken=P80QKV1WG21KAMYJ4BWF4X9SQR1SPF8M451K0DTW6SWXW3KF4KJVZQ9SC56QM0W4WJD10152V18G0
 
 ### Create account
 
