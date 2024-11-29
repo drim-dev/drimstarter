@@ -14,7 +14,8 @@ var projectServiceSetup = builder.AddProject<Projects.Drimstarter_ProjectService
     .WithReference(projectServiceDb);
 
 var projectService = builder.AddProject<Projects.Drimstarter_ProjectService>(ResourceNames.ProjectService)
-    .WithReference(projectServiceDb);
+    .WithReference(projectServiceDb)
+    .WaitForCompletion(projectServiceSetup);
 
 var accountServiceDb = postgres.AddDatabase(ResourceNames.AccountServiceDb);
 
@@ -22,7 +23,8 @@ var accountServiceSetup = builder.AddProject<Projects.Drimstarter_AccountService
     .WithReference(accountServiceDb);
 
 var accountService = builder.AddProject<Projects.Drimstarter_AccountService>(ResourceNames.AccountService)
-    .WithReference(accountServiceDb);
+    .WithReference(accountServiceDb)
+    .WaitForCompletion(accountServiceSetup);
 
 var paymentService = builder.AddProject<Projects.Drimstarter_PaymentService>("payment-service");
 
@@ -39,7 +41,8 @@ var blockchainServiceSetup = builder.AddProject<Projects.Drimstarter_BlockchainS
     .WithReference(blockchainServiceDb);
 
 var blockchainService = builder.AddProject<Projects.Drimstarter_BlockchainService>(ResourceNames.BlockchainService)
-    .WithReference(blockchainServiceDb);
+    .WithReference(blockchainServiceDb)
+    .WaitForCompletion(blockchainServiceSetup);
 
 var apiGateway = builder.AddProject<Projects.Drimstarter_ApiGateway>("api-gateway")
     .WithReference(projectService)

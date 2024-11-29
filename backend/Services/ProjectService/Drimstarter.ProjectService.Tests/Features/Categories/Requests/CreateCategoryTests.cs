@@ -21,35 +21,39 @@ public class CreateCategoryTests : IAsyncLifetime
 
     public Task DisposeAsync() => Task.CompletedTask;
 
-    private async Task<Client.CreateCategoryReply> Act(Client.CreateCategoryRequest request) =>
-        await _fixture.CategoryClient!.CreateCategoryAsync(request, cancellationToken: CreateCancellationToken());
+    private async Task<Client.CreateCategoryReply> Act(string name)
+    {
+        var request = new Client.CreateCategoryRequest { Name = name };
+        return await _fixture.CategoryClient!.CreateCategoryAsync(request, cancellationToken: CreateCancellationToken());
+    }
 
     [Fact]
     public async Task Should_create_category()
     {
-        var request = new Client.CreateCategoryRequest { Name = "Art" };
+        const string name = "Art";
 
-        var reply = await Act(request);
+        var reply = await Act(name);
 
         var categoryDto = reply.Category;
 
         categoryDto.Should().NotBeNull();
         categoryDto.Id.Should().NotBeEmpty();
-        categoryDto.Name.Should().Be(request.Name);
+        categoryDto.Name.Should().Be(name);
 
-        var dbCategory = await _fixture.Database.SingleOrDefault<Category>(c => c.Id == IdEncoding.Decode(categoryDto.Id),
+        var decoded = IdEncoding.TryDecode(categoryDto.Id, out var categoryId);
+        decoded.Should().BeTrue();
+
+        var dbCategory = await _fixture.Database.SingleOrDefault<Category>(c => c.Id == categoryId,
             CreateCancellationToken());
 
         dbCategory.Should().NotBeNull();
-        dbCategory!.Name.Should().Be(request.Name);
+        dbCategory!.Name.Should().Be(name);
     }
 
     [Fact]
     public async Task Should_create_category_with_name_in_title_case()
     {
-        var request = new Client.CreateCategoryRequest { Name = "art deco" };
-
-        var reply = await Act(request);
+        var reply = await Act("art deco");
 
         var categoryDto = reply.Category;
 
@@ -57,7 +61,10 @@ public class CreateCategoryTests : IAsyncLifetime
         categoryDto.Id.Should().NotBeEmpty();
         categoryDto.Name.Should().Be("Art Deco");
 
-        var dbCategory = await _fixture.Database.SingleOrDefault<Category>(c => c.Id == IdEncoding.Decode(categoryDto.Id),
+        var decoded = IdEncoding.TryDecode(categoryDto.Id, out var categoryId);
+        decoded.Should().BeTrue();
+
+        var dbCategory = await _fixture.Database.SingleOrDefault<Category>(c => c.Id == categoryId,
             CreateCancellationToken());
 
         dbCategory.Should().NotBeNull();

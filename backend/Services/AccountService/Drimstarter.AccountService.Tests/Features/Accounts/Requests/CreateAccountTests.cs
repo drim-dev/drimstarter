@@ -43,7 +43,10 @@ public class CreateAccountTests : IAsyncLifetime
         accountDto.Name.Should().Be(request.Name);
         accountDto.Email.Should().Be(request.Email.ToLower());
 
-        var dbAccount = await _fixture.Database.SingleOrDefault<Account>(c => c.Id == IdEncoding.Decode(accountDto.Id),
+        var decoded = IdEncoding.TryDecode(accountDto.Id, out var accountId);
+        decoded.Should().BeTrue();
+
+        var dbAccount = await _fixture.Database.SingleOrDefault<Account>(c => c.Id == accountId,
             CreateCancellationToken());
 
         dbAccount.Should().NotBeNull();
@@ -260,6 +263,6 @@ public class CreateAccountValidatorTests : IAsyncLifetime
         new AutoFaker<CreateAccountRequest>()
             .RuleFor(r => r.Name, f => name ?? f.Random.Word())
             .RuleFor(r => r.Email, f => email ?? f.Internet.Email())
-            .RuleFor(r => r.Password, f => password ?? "Password1")
+            .RuleFor(r => r.Password, _ => password ?? "Password1")
             .Generate();
 }

@@ -3,6 +3,7 @@ using Drimstarter.Common.Grpc.Server;
 using Drimstarter.Common.Validation.Behaviors;
 using Drimstarter.ProjectService.Database;
 using Drimstarter.ProjectService.Features.Categories;
+using Drimstarter.ProjectService.Features.Projects;
 using Drimstarter.ServiceDefaults;
 using FluentValidation;
 
@@ -26,9 +27,12 @@ builder.Services.AddGrpcServer();
 // TODO: use different generator id for different replicas
 builder.Services.AddIdFactory(1);
 
+builder.Services.AddPaging(builder.Configuration);
+
 var app = builder.Build();
 
 app.MapGrpcService<CategoryApi>();
+app.MapGrpcService<ProjectApi>();
 
 app.Run();
 

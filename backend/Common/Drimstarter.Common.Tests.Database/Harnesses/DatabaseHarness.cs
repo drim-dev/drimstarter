@@ -12,17 +12,23 @@ using Testcontainers.PostgreSql;
 
 namespace Drimstarter.Common.Tests.Database.Harnesses;
 
-public class DatabaseHarness<TProgram, TDbContext>(string _databaseResourceName) : IHarness<TProgram>
+public class DatabaseHarness<TProgram, TDbContext> : IHarness<TProgram>
     where TProgram : class
     where TDbContext : DbContext
 {
     private PostgreSqlContainer? _postgres;
     private WebApplicationFactory<TProgram>? _factory;
     private bool _started;
+    private readonly string _databaseResourceName;
+
+    public DatabaseHarness(string databaseResourceName)
+    {
+        _databaseResourceName = databaseResourceName;
+    }
 
     public void ConfigureWebHostBuilder(IWebHostBuilder builder)
     {
-        Environment.SetEnvironmentVariable($"ConnectionStrings__{_databaseResourceName}", _postgres!.GetConnectionString());
+        builder.UseSetting($"ConnectionStrings:{_databaseResourceName}", _postgres!.GetConnectionString());
     }
 
     public async Task Start(WebApplicationFactory<TProgram> factory, CancellationToken cancellationToken)

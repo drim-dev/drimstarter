@@ -1,8 +1,8 @@
 using Drimstarter.Common.Database;
+using Drimstarter.Common.Tests.Assertions;
 using Drimstarter.ProjectService.Tests.Fixtures;
 using Drimstarter.ProjectService.Tests.Utils;
 using FluentAssertions;
-using IdGen;
 
 namespace Drimstarter.ProjectService.Tests.Features.Categories.Requests;
 
@@ -17,8 +17,12 @@ public class ListCategoriesTests : IAsyncLifetime
 
     public Task DisposeAsync() => Task.CompletedTask;
 
-    private async Task<Client.ListCategoriesReply> Act(Client.ListCategoriesRequest request) =>
-        await _fixture.CategoryClient!.ListCategoriesAsync(request, cancellationToken: CreateCancellationToken());
+    private async Task<Client.ListCategoriesReply> Act()
+    {
+        var request = new Client.ListCategoriesRequest();
+        return await _fixture.CategoryClient!.ListCategoriesAsync(request,
+            cancellationToken: CreateCancellationToken());
+    }
 
     [Fact]
     public async Task Should_list_categories()
@@ -27,19 +31,12 @@ public class ListCategoriesTests : IAsyncLifetime
 
         await _fixture.Database.Save(dbCategories);
 
-        var request = new Client.ListCategoriesRequest();
-
-        var reply = await Act(request);
+        var reply = await Act();
 
         reply.Categories.Should().NotBeEmpty();
 
-        // TODO: move to extension
-        reply.Categories.Should().HaveCount(dbCategories.Count);
-        foreach (var dbCategory in dbCategories)
-        {
-            reply.Categories.Should().Contain(c =>
-                c.Id == IdEncoding.Encode(dbCategory.Id) &&
-                c.Name == dbCategory.Name);
-        }
+        reply.Categories.ShouldBeEquivalentTo(dbCategories,
+            (a, e) => a.Id == IdEncoding.Encode(e.Id),
+            (a, e) => a.Name.Should().Be(e.Name));
     }
 }

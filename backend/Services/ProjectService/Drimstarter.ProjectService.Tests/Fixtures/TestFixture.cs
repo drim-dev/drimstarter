@@ -1,8 +1,10 @@
+using Drimstarter.Common.Grpc.Client;
 using Drimstarter.Common.Tests.Database.Harnesses;
 using Drimstarter.Common.Tests.Grpc.Harnesses.Client;
 using Drimstarter.Common.Tests.Harnesses;
 using Drimstarter.ProjectService.Database;
 using Drimstarter.ServiceDefaults;
+using Grpc.Net.ClientFactory;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,6 +27,7 @@ public class TestFixture : IAsyncLifetime
 
     public DatabaseHarness<Program, ProjectDbContext> Database { get; }
     public Client.Categories.CategoriesClient? CategoryClient { get; private set; }
+    public Client.Projects.ProjectsClient? ProjectClient { get; private set; }
 
     public AsyncServiceScope CreateScope() => _factory.Services.CreateAsyncScope();
 
@@ -42,6 +45,7 @@ public class TestFixture : IAsyncLifetime
         await _grpcChannel.Start(_factory, CreateCancellationToken(60));
 
         CategoryClient = new Client.Categories.CategoriesClient(_grpcChannel.GrpcChannel);
+        ProjectClient = new Client.Projects.ProjectsClient(_grpcChannel.GrpcChannel);
 
         await Database.Migrate(CreateCancellationToken());
     }
