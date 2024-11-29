@@ -15,18 +15,34 @@ public static class IdEncoding
         return Base32.Crockford.Encode(bytesWithChecksum).ToLower();
     }
 
-    // TODO: rewrite to TryDecode and return BadRequest if checksum mismatch
-    public static long Decode(string id)
+    public static bool TryDecode(string? encodedId, out long id)
     {
-        var bytesWithChecksum = Base32.Crockford.Decode(id.ToUpper());
+        id = default;
+
+        if (string.IsNullOrWhiteSpace(encodedId))
+        {
+            return false;
+        }
+
+        byte[] bytesWithChecksum;
+        try
+        {
+            bytesWithChecksum = Base32.Crockford.Decode(encodedId);
+        }
+        catch
+        {
+            return false;
+        }
+
         var bytes = bytesWithChecksum.AsSpan()[..^1];
         var checksum = bytesWithChecksum[^1];
         var calculatedChecksum = bytes.CalculateChecksum();
         if (checksum != calculatedChecksum)
         {
-            throw new ArgumentException("Checksum mismatch");
+            return false;
         }
 
-        return BitConverter.ToInt64(bytes);
+        id = BitConverter.ToInt64(bytes);
+        return true;
     }
 }

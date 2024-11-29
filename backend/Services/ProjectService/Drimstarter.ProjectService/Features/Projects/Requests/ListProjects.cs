@@ -5,6 +5,7 @@ using Drimstarter.ProjectService.Database;
 using Google.Protobuf.WellKnownTypes;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using static Drimstarter.ProjectService.Features.Projects.Errors.ProjectValidationErrors;
 
 namespace Drimstarter.ProjectService.Features.Projects.Requests;
 
@@ -30,7 +31,7 @@ public static class ListProjects
 
             if (!_paging.TryGetMaxPageSize(request.MaxPageSize, out var maxPageSize))
             {
-                throw new ValidationErrorsException("maxPageSize", "Invalid max page size", "validation:max_page_size_invalid");
+                throw new ValidationErrorsException("maxPageSize", "Invalid max page size", MaxPageSizeInvalid);
             }
 
             var query = _db.Projects.AsNoTracking().AsQueryable();
@@ -38,7 +39,10 @@ public static class ListProjects
             // TODO: generalize
             if (!string.IsNullOrEmpty(requestCategoryId))
             {
-                var categoryId = IdEncoding.Decode(requestCategoryId);
+                if (!IdEncoding.TryDecode(requestCategoryId, out var categoryId))
+                {
+                    throw new ValidationErrorsException("categoryId", "Invalid category id", CategoryIdInvalid);
+                }
                 query = query.Where(x => x.CategoryId == categoryId);
             }
 
@@ -57,7 +61,7 @@ public static class ListProjects
                     "fundinggoal" => query.OrderBy(x => x.FundingGoal),
                     "-currentfunding" => query.OrderByDescending(x => x.CurrentFunding),
                     "currentfunding" => query.OrderBy(x => x.CurrentFunding),
-                    _ => throw new ValidationErrorsException("sort", "Invalid sort value", "validation:sort_invalid")
+                    _ => throw new ValidationErrorsException("sort", "Invalid sort", SortInvalid)
                 };
 
                 // Sort by StartDate as a secondary sort to ensure deterministic order
@@ -71,7 +75,7 @@ public static class ListProjects
             if (!_paging.TryGetOffsetAndLimit(request.PageToken, maxPageSize, out var offset, out var limit,
                         requestCategoryId, requestSort))
             {
-                throw new ValidationErrorsException("pageToken", "Invalid page token", "validation:page_token_invalid");
+                throw new ValidationErrorsException("pageToken", "Invalid page token", PageTokenInvalid);
             }
 
             var projects = await query
