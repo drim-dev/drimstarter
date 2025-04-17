@@ -17,4 +17,7 @@ public class CategoryApi : ProjectService.Categories.CategoriesBase
 
     public override Task<ListCategoriesReply> ListCategories(ListCategoriesRequest request, ServerCallContext context) =>
         _sender.Send(request, context.CancellationToken);
+    
+    public override Task<DeleteCategoryReply> DeleteCategory(DeleteCategoryRequest request, ServerCallContext context) =>
+        _sender.Send(request, context.CancellationToken);
 }
